@@ -1,0 +1,363 @@
+@charset "UTF-8";
+/* CSS Document */
+body {
+	margin:0px;
+	padding:0px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+}
+ul {
+	list-style:none;
+	margin:15px 0px;
+	padding:0px;
+}
+form {
+	margin: 0 auto;
+}
+strong {
+	color:#900
+}
+
+
+input {
+	color:#666666;
+	height:20px;
+	margin-top:5px;
+	margin-bottom:5px;
+	padding-top:0px;
+	padding-bottom:0px;
+}
+
+label{
+	margin-top:5px;
+	margin-bottom:5px;
+	padding-top:0px;
+	padding-bottom:0px;
+	}
+p{ margin:0px; margin:0px}
+
+.ancho250 {
+	width:250px;
+	height:20px
+}
+.ancho50 {
+	width:50px;
+}
+
+
+
+
+.radio{ margin-left:5px; display:inline; margin-left:0px; padding-top:0px;}
+
+
+/* ...header... */
+#header {
+	width:100%;
+	background:url(../img/bgheader.jpg) repeat-x bottom;
+	height:88px;
+	background-color:#FFFFFF;
+	box-shadow:2px 2px 5px #999;
+	 -webkit-box-shadow: 2px 2px 5px #999;
+  -moz-box-shadow: 2px 2px 5px #999;
+}
+#conenedorHeader {
+	width:100%;
+	padding:0px;
+}
+#logo {
+	width:30%;
+	float:left;
+	padding: 0px;
+	margin:0px;
+        margin-left:1.2%;
+}
+#logo ul {
+	margin:0px;
+	padding:0px;
+}
+#logo ul li {
+	float:left;
+	margin:0px;
+	padding:0px;
+	alignment-baseline:central
+}
+#icono {
+	padding:4px 0px 0px 0px;
+	background-color:#FFFFFF
+}
+#logomatch {
+	padding-left:10px;
+	padding-top:22px
+}
+#submenu {
+	width:60%;
+	float:right;
+	color:#FFFFFF;
+	margin-top:15px
+}
+#submenu ul {
+	float:right;
+	text-align:right;
+}
+#submenu ul li {
+	float:left;
+	margin: 0px 8px 0px 0px;
+}
+
+#menu {
+	float:right;
+	font-weight:bold
+}
+
+
+/* ....Redes Sociales.... */
+
+/* Facebook */
+#facebook {
+	width:20px;
+	height:20px;
+	text-align:center;
+}
+#facebook a {
+	outline: none;/* get rid of dotted borders in FireFox */
+	display:block;
+	width: 20px;
+	height: 20px;
+	background:url(../img/facebook.png);
+	text-decoration: none;
+}
+#facebook a:hover {
+	background-position: 0 -21px;
+}
+/* twitter */
+#twitter {
+	width:20px;
+	text-align:center;
+}
+#twitter a {
+	outline: none;/* get rid of dotted borders in FireFox */
+	display:block;
+	width:20px;
+	height:20px;
+	background:url(../img/twitter.png);
+	text-decoration: none;
+}
+#twitter a:hover {
+	background-position: 0 -21px;
+}
+/* Linkedin*/
+#linkedin {
+	width:20px;
+	text-align:center;
+}
+#linkedin a {
+	outline: none;/* get rid of dotted borders in FireFox */
+	display:block;
+	width:20px;
+	height:20px;
+	background:url(../img/link.png);
+	text-decoration: none;
+}
+#linkedin a:hover {
+	background-position: 0 -21px;
+}
+/* Google Plus */
+#googleplus {
+	width:20px;
+	text-align:center;
+}
+#googleplus a {
+	outline: none;/* get rid of dotted borders in FireFox */
+	display:block;
+	width:20px;
+	height:20px;
+	background:url(../img/google.png);
+	text-decoration: none;
+}
+#googleplus a:hover {
+	background-position: 0 -21px;
+}
+/* ....End Redes Sociales.... */
+
+/* ...Idiomas... */
+
+/* Español */
+#espanol {
+	width:20px;
+	text-align:center;
+}
+#espanol a {
+	outline: none;/* get rid of dotted borders in Firefox */
+	display:block;
+	width:20px;
+	height:20px;
+	background:url(../img/mx.png);
+	text-decoration: none;
+}
+#espanol a:hover {
+	background-position: 0 -22px;
+	background-repeat:no-repeat
+}
+/* Español Activo */
+#espanolActivo {
+	width:20px;
+	text-align:center;
+}
+#espanolActivo a {
+	outline: none;/* get rid of dotted borders in Firefox */
+	display:block;
+	width:20px;
+	height:20px;
+	background:url(../img/mx.png);
+	background-position: 0 -22px;
+	text-decoration: none;
+	background-repeat:no-repeat;
+}
+#espanolActivo a:hover {
+	background-position: 0 -22px;
+	background-repeat:no-repeat
+}
+/* Ingles */
+#ingles {
+	width:20px;
+	text-align:center;
+}
+#ingles a {
+	outline: none;/* get rid of dotted borders in Firefox */
+	display:block;
+	width:20px;
+	height:20px;
+	background:url(../img/EEUU.png);
+	text-decoration: none;
+}
+#ingles a:hover {
+	background-position: 0 -23px;
+	background-repeat:no-repeat
+}
+/* Ingles */
+#inglesActivo {
+	width:20px;
+	text-align:center;
+}
+#inglesActivo a {
+	outline: none;/* get rid of dotted borders in Firefox */
+	display:block;
+	width:20px;
+	height:20px;
+	background:url(../img/EEUU.png);
+	text-decoration: none;
+	background-position: 0 -23px;
+	background-repeat:no-repeat;
+}
+#inglesActivo a:hover {
+	background-position: 0 -23px;
+	background-repeat:no-repeat
+}
+/* ....End Idiomas.... */
+
+.alinearIzquierda li {
+	float:left;
+	padding-right:10px;
+}
+#page-wrap {
+	width:90%;
+	margin:auto;
+}
+a {
+	text-decoration: none;
+}
+
+.tabs {
+	list-style: none;
+	overflow: hidden;
+	padding-left: 1px;
+}
+.tabs li {
+	display: inline;
+}
+.tabs li a {
+	display: block;
+	float: left;
+	padding: 4px 8px;
+	color: black;
+	border: 1px solid #ccc;
+	background: #eee;
+	margin: 0 0 0 -1px;
+}
+.tabs li a.current {
+	background: white;
+	border-bottom: 0;
+	position: relative;
+	top: 2px;
+	z-index: 2;
+}
+.box-wrapper {
+	margin: -1px 0 0 0;
+	position: relative;
+}
+.content-box {
+	overflow: auto;
+	position: absolute;
+	display: inline-block;
+	margin:0px;
+	padding:0px;
+	width: 100%;
+	height:460px;
+	background-color:#FFF
+}
+.current {
+	z-index: 100;
+}
+.col-one, .col-two, .col-three {
+	width: 100%;
+	position: relative;
+}
+
+/*...footer...*/
+
+#footer{width:100%;  text-align:center; display:inline-block; margin-top:2% }
+#footer a{ float:left; list-style:none; color:#999; text-decoration:none; font-size:12px}
+#footer ul{ margin:0px; padding:0px}
+#contenidofooter li { float:left; margin-right:8px; margin-top:1%} 
+#contenidofooter { width:90%; margin:auto; height:25px;} 
+/*...End footer...*/
+
+/*...Login...*/
+.entrar{
+	background-image:url(../img/bgFooter.jpg);
+	background-position:bottom;
+	 width: 300px; height: 200px; 
+	 margin:auto; margin-top:20px;
+	 margin-bottom:30px;
+	 padding: 10px 10px 0px 10px;
+border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-ms-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+-khtml-border-radius: 10px 10px 10px 10px;
+
+	box-shadow: 4px 4px 5px #888888;
+	-moz-box-shadow: 4px 4px 5px #888888;
+	-ms-box-shadow: 4px 4px 5px #888888;
+	-webkit-box-shadow: 4px 4px 5px #888888;
+	-khtml-box-shadow: 4px 4px 5px #888888;
+	}
+.acceder{ color: #FF0; background:#000066; font-size:18px; padding:5px 15px 5px 15px; margin-top: 10px;}
+.passwordbox{
+	width:300px;
+	padding-top:30px;
+	text-align: center;
+	float:left;
+	}
+	
+#triquiback{
+               position:fixed;
+               left: 0;
+               top: 0;
+               overflow:hidden;
+               z-Index: -9999;
+background:black;
+          }
+#triquiback img{ position:relative;}
+	/*... End Login...*/
+	

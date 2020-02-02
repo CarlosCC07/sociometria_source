@@ -1,0 +1,662 @@
+@charset "UTF-8";
+
+/* ...header... */
+#header { width:100%; background:url(../img/bgheader.jpg) repeat-x bottom; height:88px; background-color:#FFFFFF;
+		box-shadow:2px 2px 5px #999;
+		 -webkit-box-shadow: 2px 2px 5px #999;
+    	 -moz-box-shadow: 2px 2px 5px #999;
+}
+#conenedorHeader{ width:100%; padding:0px;}
+#logo{ width:30%; float:left; padding:0px; margin:0px; margin-left: 1.2%;}
+#logo ul { margin:0px; padding:0px;}
+#logo ul li{ float:left; margin:0px; padding:0px; alignment-baseline:central}
+#icono { background-color:#FFFFFF}
+#logomatch{ padding-left:10px; padding-top:22px}
+#submenu { width:60%; float:right; color:#FFFFFF;}
+#submenu ul { float:right; text-align:right; }
+#submenu ul li {float:left; margin: 0px 8px 0px 0px;}
+#menu{ float:right; font-weight:bold }
+
+.tt-wrapper li a span{
+	width: 100px;
+	height: auto;
+	line-height: 20px;
+	padding: 10px;
+	left: 50%;
+	margin-left: -64px;
+	font-family: 'Alegreya SC', Georgia, serif;
+	font-weight: 400;	
+	font-style: italic;
+	font-size: 14px;
+	color: #820403;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+	text-align: center;
+	border: 4px solid rgba(255,255,255,0.8);
+	background: rgba(255,255,255,1.0);
+	text-indent: 0px;
+	border-radius: 5px;
+	position: absolute;
+	pointer-events: none;
+	bottom: 100px;
+	opacity: 0;
+	box-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+.tt-wrapper li a span:before,
+.tt-wrapper li a span:after{
+	content: '';
+	position: absolute;
+	bottom: -15px;
+	left: 50%;
+	margin-left: -9px;
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 10px solid rgba(0,0,0,0.1);
+}
+.tt-wrapper li a span:after{
+	bottom: -14px;
+	margin-left: -10px;
+	border-top: 10px solid #fff;
+}
+.tt-wrapper li a:hover span{
+	opacity: 0.9;
+	bottom: 40px;
+}
+
+/* ...End header... */
+
+
+/* ....Redes Sociales.... */
+
+/* Facebook */
+#facebook {width:20px; height:20px; text-align:center;}
+#facebook a { outline: none;/* get rid of dotted borders in FireFox */
+		display:block;
+		width: 20px;
+        height: 20px;
+		background:url(../img/facebook.png);
+		text-decoration: none;
+		}
+#facebook a:hover {background-position: 0 -21px;}
+/* twitter */
+#twitter {width:20px; text-align:center;}
+#twitter a {
+outline: none;/* get rid of dotted borders in FireFox */
+		display:block;
+		width:20px;
+        height:20px;
+		background:url(../img/twitter.png);
+		text-decoration: none;
+		}
+#twitter a:hover {background-position: 0 -21px;}
+/* Linkedin*/
+#linkedin {width:20px; text-align:center;}
+#linkedin a {
+outline: none;/* get rid of dotted borders in FireFox */
+		display:block;
+		width:20px;
+        height:20px;
+		background:url(../img/link.png);
+		text-decoration: none;
+		}
+#linkedin a:hover {background-position: 0 -21px;}
+/* Google Plus */
+#googleplus {width:20px; text-align:center;}
+#googleplus a {
+outline: none;/* get rid of dotted borders in FireFox */
+		display:block;
+		width:20px;
+        height:20px;
+		background:url(../img/google.png);
+		text-decoration: none;
+		}
+#googleplus a:hover {background-position: 0 -21px;}
+/* ....End Redes Sociales.... */
+
+
+/* ...Idiomas... */
+
+/* Español */
+#espanol {width:20px; text-align:center;}
+#espanol a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:20px;
+        height:20px;
+		background:url(../img/mx.png);
+		text-decoration: none;
+		}
+#espanol a:hover {background-position: 0 -22px; background-repeat:no-repeat}
+
+/* Español Activo */
+#espanolActivo {width:20px; text-align:center;}
+#espanolActivo a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:20px;
+        height:20px;
+		background:url(../img/mx.png);
+		background-position: 0 -22px;
+		text-decoration: none;
+		background-repeat:no-repeat;
+		}
+#espanolActivo a:hover {background-position: 0 -22px; background-repeat:no-repeat}
+
+
+/* Ingles */
+#ingles {width:20px; text-align:center;}
+#ingles a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:20px;
+        height:20px;
+		background:url(../img/EEUU.png);
+		text-decoration: none;
+		}
+#ingles a:hover {background-position: 0 -23px; background-repeat:no-repeat}
+
+/* Ingles */
+#inglesActivo {width:20px; text-align:center;}
+#inglesActivo a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:20px;
+        height:20px;
+		background:url(../img/EEUU.png);
+		text-decoration: none;
+		background-position: 0 -23px; 
+		background-repeat:no-repeat;
+		}
+#inglesActivo a:hover {background-position: 0 -23px; background-repeat:no-repeat}
+/* ....End Idiomas.... */
+
+#carusel{ margin:auto; width:900px;height:390px; margin-top:5px}
+
+
+
+
+/* ...Servicios... */
+#servicioshome{ font-size:11px; margin:auto; width:890px; text-align:center; }
+#servicioshome ul{margin: 0px; padding:0px;}
+#servicioshome ul li{ float:left; margin: 15px;}
+
+#serviciosinterior{ font-size:11px; margin: auto; width:900px; height:24px;}
+#serviciosinterior ul{ float:left; margin: 0px; padding:0px}
+#serviciosinterior li{ float:left; margin: 8px; }
+#Tsubmenu{ width:900px; font-weight:bold; margin:auto; padding-top:20px; font-size:14px}
+
+
+/* consultoria */
+#consultoria {width:80px; text-align:center;}
+#consultoria a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:61px;
+        height:62px;
+		background:url(../img/servicios/consultoria.png);
+		margin:10px auto;
+		text-decoration: none;
+		}
+#consultoria a:hover {background-position: 0 -63px; background-repeat:no-repeat}
+
+#consultoriaMini {width:23px; text-align:center;}
+#consultoriaMini a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:23px;
+        height:23px;
+		background:url(../img/servicios/consultoria.jpg);
+		background-repeat:no-repeat;
+		text-decoration: none;
+		position:relative;
+		}
+#consultoriaMini a:hover {background-position: 0 -24px; background-repeat:no-repeat}
+
+
+/* multiperceptual */
+#multiperceptual {width:63px; text-align:center;}
+#multiperceptual a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:63px;
+        height:63px;
+		margin:10px auto;
+		background:url(../img/servicios/360.png);
+		text-decoration: none;
+		}
+#multiperceptual a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+
+#multiperceptualMini {width:24px; text-align:center;}
+#multiperceptualMini a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:24px;
+        height:25px;
+		background:url(../img/servicios/360.jpg);
+		text-decoration: none;
+		position:relative;
+		}
+#multiperceptualMini a:hover {background-position: 0 -25px; background-repeat:no-repeat}
+
+/* 9block */
+#block {width:80px; text-align:center;}
+#block a{
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:62px;
+        height:62px;
+		margin:10px auto;
+		background:url(../img/servicios/9block.png);
+		text-decoration: none;
+		}
+#block a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+
+#blockMini {width:24px; text-align:center;}
+#blockMini a{
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:23px;
+        height:24px;
+		background:url(../img/servicios/block.jpg);
+		text-decoration: none;
+		position:relative;
+		}
+#blockMini a:hover {background-position: 0 -24px; background-repeat:no-repeat}
+
+/* clima */
+#climaMini {width:28px; text-align:center;}
+#climaMini a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:28px;
+        height:24px;
+		background:url(../img/servicios/clima.jpg);
+		text-decoration: none;
+		position:relative;
+		}
+#climaMini a:hover {background-position: 0 -24px; background-repeat:no-repeat}
+
+#clima {width:72px; text-align:center;}
+#clima a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:72px;
+        height:62px;
+		margin:10px auto;
+		background:url(../img/servicios/clima.png);
+		text-decoration: none;
+		}
+#clima a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+
+/* personalBranding */
+#personalBranding {width:93px; text-align:center;}
+#personalBranding a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:93px;
+        height:63px;
+		margin:10px auto;
+		background:url(../img/servicios/personal.png);
+		text-decoration: none;
+		}
+#personalBranding a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+
+#personalBrandingMini {width:36px; text-align:center;}
+#personalBrandingMini a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:36px;
+        height:24px;
+		background:url(../img/servicios/personal.jpg);
+		text-decoration: none;
+		position:relative;
+		}
+#personalBrandingMini a:hover {background-position: 0 -24px; background-repeat:no-repeat}
+
+/* balance */
+#balance {width:80px; text-align:center;}
+#balance a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:45px;
+        height:63px;
+		margin:10px auto;
+		background:url(../img/servicios/balance.png);
+		text-decoration: none;
+		}
+#balance a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+
+#balanceMini {width:18px; text-align:center;}
+#balanceMini a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:18px;
+        height:24px;
+		background:url(../img/servicios/balance.jpg);
+		text-decoration: none;
+		position:relative;
+		}
+#balanceMini a:hover {background-position: 0 -24px; background-repeat:no-repeat}
+
+/* vinculacion */
+#vinculacion {width:77px; text-align:center;}
+#vinculacion a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:77px;
+        height:63px;
+		margin:10px auto;
+		background:url(../img/servicios/vinculacion.png);
+		text-decoration: none;
+		}
+#vinculacion a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+
+#vinculacionMini {width:29px; text-align:center;}
+#vinculacionMini a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:29px;
+        height:24px;
+		background:url(../img/servicios/vinculacion.jpg);
+		text-decoration: none;
+		position:relative;
+		}
+#vinculacionMini a:hover {background-position: 0 -23px; background-repeat:no-repeat}
+
+
+/* outsourcing */
+#outsourcing {width:65px; text-align:center;}
+#outsourcing a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:64px;
+        height:63px;
+		margin:10px auto;
+		background:url(../img/servicios/outsourcing.png);
+		text-decoration: none;
+		}
+#outsourcing a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+
+#outsourcingMini {width:24px; text-align:center;}
+#outsourcingMini a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:24px;
+        height:24px;
+		background:url(../img/servicios/outsourcing.jpg);
+		text-decoration: none;
+		position:relative;
+		}
+#outsourcingMini a:hover {background-position: 0 -24px; background-repeat:no-repeat}
+
+/* compensaciones */
+#compensaciones {width:80px; text-align:center;}
+#compensaciones a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:63px;
+        height:63px;
+		margin:10px auto;
+		background:url(../img/servicios/compensaciones.png);
+		text-decoration: none;
+		}
+#compensaciones a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+
+#compensacionesMini {width:24px; text-align:center;}
+#compensacionesMini a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:24px;
+        height:24px;
+		background:url(../img/servicios/compensaciones.jpg);
+		text-decoration: none;
+		position:relative;
+		}
+#compensacionesMini a:hover {background-position: 0 -24px; background-repeat:no-repeat}
+/* ...End Sericios... */
+
+
+/*...portafolio...*/
+#portafolio {width:63px; text-align:center;}
+#portafolio a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:63px;
+        height:63px;
+		margin:auto;
+		background:url(../img/servicios/iconoportafolio.png);
+		text-decoration: none;
+		}
+#portafolio a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+
+/*suite*/
+#suite {width:71px; text-align:center;}
+#suite a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:71px;
+        height:63px;
+		margin:auto;
+		background:url(../img/servicios/suite.png);
+		text-decoration: none;
+		}
+#suite a:hover {background-position: 0 -58px; background-repeat:no-repeat}
+/*voxx*/
+#voxx {width:63px; text-align:center;}
+#voxx a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:63px;
+        height:63px;
+		margin:auto;
+		background:url(../img/servicios/voxx.png);
+		text-decoration: none;
+		}
+#voxx a:hover {background-position: 0 -63px; background-repeat:no-repeat}
+
+/*Centor de evaluación*/
+#evaluacion {width:63px; text-align:center;}
+#evaluacion a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:63px;
+        height:63px;
+		margin:auto;
+		background:url(../img/servicios/evaluacion.png);
+		text-decoration: none;
+		}
+#evaluacion a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+
+/*Centor de evaluación*/
+#correoElectronico {width:63px; text-align:center;}
+#correoElectronico a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:63px;
+        height:63px;
+		margin:auto;
+		background:url(../img/servicios/correoelectronico.png);
+		text-decoration: none;
+		}
+#correoElectronico a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+
+/*Buzón de Trasparencia*/
+#BuzónTrasparencia {width:63px; text-align:center;}
+#BuzónTrasparencia a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:63px;
+        height:63px;
+		margin:auto;
+		background:url(../img/servicios/buzon.png);
+		text-decoration: none;
+		}
+#BuzónTrasparencia a:hover {background-position: 0 -65px; background-repeat:no-repeat}
+
+/*Línea Telefónica de Trasparencia*/
+#telTrasparencia {width:63px; text-align:center;}
+#telTrasparencia a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:63px;
+        height:63px;
+		margin:auto;
+		background:url(../img/servicios/telefono.png);
+		text-decoration: none;
+		}
+#telTrasparencia a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+
+/*Candidatos*/
+#candidato {width:63px; text-align:center;}
+#candidato a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:63px;
+        height:63px;
+		margin:auto;
+		background:url(../img/servicios/candidatos.png);
+		text-decoration: none;
+		}
+#candidato a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+
+/*Empresa*/
+#empresa {width:63px; text-align:center;}
+#empresa a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:63px;
+        height:63px;
+		margin:auto;
+		background:url(../img/servicios/empresa.png);
+		text-decoration: none;
+		}
+#empresa a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+/*...End portafolio...*/
+
+
+/* ...Interiores... */
+#contenidoinfo{ width:900px; margin-top:1%; margin-bottom:10px; margin-left:auto; margin-right:auto}
+p{ font-size:14px;}
+#img{ width:50%; float:left}
+#img2{ width:40%; float:left}
+#texto{ width:50%; float:left;}
+#texto ul { margin:5px; }
+#texto ul li{font-size:14px; list-style:circle; margin-bottom:5px}
+
+#texto2{ width:60%; float:left; font-size:14px}
+#texto2 ul{ padding:0px; margin:0px; height:90px;}
+#texto2 ul li{ float:left; font-size:14px; margin-bottom:3px}
+
+#texto3{ width:50%; float:left; font-size:14px}
+#texto3 ul{ padding:0px; margin:0px; height:90px;}
+#texto3 ul li{ float:left; font-size:14px;}
+/* ...End Interiores... */
+
+/*...Intranet...*/
+/*skyDrive*/
+#skyDrive {width:63px; text-align:center;}
+#skyDrive a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:63px;
+        height:63px;
+		margin:auto;
+		background:url(../img/servicios/skydrive.png);
+		text-decoration: none;
+		}
+#skyDrive a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+
+/*Office 365*/
+#office {width:63px; text-align:center;}
+#office a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:63px;
+        height:63px;
+		margin:auto;
+		background:url(../img/servicios/office.png);
+		text-decoration: none;
+		}
+#office a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+
+/*surveymonkey*/
+#surveymonkey {width:63px; text-align:center;}
+#surveymonkey a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:63px;
+        height:63px;
+		margin:auto;
+		background:url(../img/servicios/surveymonkey.jpg);
+		text-decoration: none;
+		}
+#surveymonkey a:hover {background-position: 0 -63px; background-repeat:no-repeat}
+
+/*...Fin Intranet...*/
+
+/*...Descargas...*/
+
+/*Wnidows*/
+#PC {width:63px; text-align:center;}
+#PC a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:63px;
+        height:63px;
+		margin:auto;
+		background:url(../img/servicios/windows.png);
+		text-decoration: none;
+		}
+#PC a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+
+/*Mac*/
+#Mac {width:63px; text-align:center;}
+#Mac a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:63px;
+        height:63px;
+		margin:auto;
+		background:url(../img/servicios/macIcon.png);
+		text-decoration: none;
+		}
+#Mac a:hover {background-position: 0 -65px; background-repeat:no-repeat}
+
+/*PDF*/
+#pdf {width:63px; text-align:center;}
+#pdf a {
+outline: none;/* get rid of dotted borders in Firefox */
+		display:block;
+		width:63px;
+        height:63px;
+		margin:auto;
+		background:url(../img/servicios/pdf.png);
+		text-decoration: none;
+		}
+#pdf a:hover {background-position: 0 -64px; background-repeat:no-repeat}
+/*...Fin Descargas...*/
+
+/*...footer...*/
+
+#footer{width:100%; position:fixed; bottom:0px; z-index:10; text-align:center }
+#footer a{ float:left; list-style:none; color:#999; text-decoration:none; margin:0.4em; font-size:12px}
+#footer a:hover{ color:#666}
+#footer ul{ margin:0px; padding:0px}
+#contenidofooter{ width:600px; margin:auto; height:25px;} 
+#contenidofooter2{ width:570px; margin:auto;  height:25px;} 
+/*...End footer...*/
+
+/*...validar formulario...*/
+.notFilled{
+    border: 2px solid #f00;
+    background: #f99;
+  }
+ .required{
+	 
+	 }

@@ -1,0 +1,42 @@
+@charset "UTF-8";
+/* CSS Document */
+
+#viewport1, #viewport2{
+	width:900px;
+	height:350px;
+    position:relative;
+	overflow:hidden;
+}
+
+#wall1, #wall2{
+    z-index:1;
+}
+    #wall1 .tile, #wall2 .tile{
+    	font-size:24px;
+    	color:#000;
+        text-indent:-9999px;
+    }
+    
+    .center{
+        text-align:center;
+    }
+
+    #coda-list1, #coda-list2{
+        display:block;
+        margin:20px auto;
+    	height:13px;
+    }
+    
+    .wall-item-coda{
+    	display:inline-block;
+    	overlay:hidden;
+    	width:11px;
+    	height:13px;
+    	margin:0 3px;
+    	text-indent:-9999px;
+		background:transparent url("https://i1284.photobucket.com/albums/a569/Matchpeople/Mpicon_zpsda6b1e04.jpg") no-repeat center bottom;
+    }
+    
+    	.wall-item-current{
+    		background:transparent url("https://i1284.photobucket.com/albums/a569/Matchpeople/Mpicon_zpsda6b1e04.jpg") no-repeat center top;
+    	}
