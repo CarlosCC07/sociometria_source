@@ -1,0 +1,104 @@
+ @media print{
+	      body{ 
+	      background-color:#FFFFFF!important;
+	       background-image:none;
+	       }
+	                       
+	      #header{ display:none;}
+	      #leftbar{ display:none;}
+		  hr{display:none;}
+	      #contenidofooter{display:none;}
+
+		  #ad{display:none;}
+
+	      #contentArea{ width:95%;height: 1%;position: fixel;top: 0px;left:0px;
+		  }
+	    }
+
+.per0{
+	
+}
+.per1{
+	background-color:#FAFAD2!important;
+}
+.per2{
+	background-color:#FFE4B5!important;	
+}
+.per3{
+	background-color:#66CCFF!important;
+}
+.per4{
+	background-color:#A2F6AE!important;
+}
+.per5{
+	background-color:#FFCCFF!important;	
+}
+.per6{
+	background-color:#F08080!important;
+}
+
+.clave{
+
+	background-color:#FAFAD2!important;
+
+}
+
+
+.clave2{
+
+	background-color:#FFE4B5!important;
+
+
+}
+
+
+.gerente{
+	background-color:#F08080!important;
+
+
+}
+.comiteSindical{
+		background-color:#66CCFF!important;
+
+}
+
+.sin{
+	background-color:#F8F8F8!important;
+
+}
+
+.noBorder{
+	border-top:none;
+
+}
+
+
+
+.important{
+		background-color:#48D1CC!important;
+		color:white!important;
+}
+
+.title{
+	
+	background-color:rgb(65, 105, 225)!important;
+	color:white!important;
+}
+
+hr { height:2px; background-color:#666; padding:0px; margin:0px}
+
+tr th{
+	text-align:center!important;
+	color:white!important;
+}
+
+h3{
+	color:black;
+}
+
+.contentHelp{
+	margin-left:30px;
+	margin-top:30px;
+	margin-right:50px;
+
+}

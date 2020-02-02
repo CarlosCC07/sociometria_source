@@ -1,0 +1,40 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body{ margin:0px; padding:0px; font-family:Arial, Helvetica, sans-serif}
+img{ border:0px; margin:0px; padding:0px;}
+ul{ list-style:none;}
+il{ list-style:none;}
+
+hr { height:2px; background-color:#666; padding:0px; margin:0px}
+
+h5{ margin:0px; padding:0px;}
+h4{ margin:0px; padding:0px; font-size:15px}
+h3{ margin:0px; padding:0px; color:#820403;}
+h2{ margin:0px; padding:0px}
+h1{ margin:0px; padding:0px}
+p { margin:0px; padding:0px; text-align:justify;}
+
+.gap1{ margin-top:2%; margin-bottom:2%}
+.gap2{ margin-top:2%;}
+.gap3{ margin-bottom:2%}
+
+.bulletText{ color:#069; margin-top:2%; margin-bottom:2%}
+.nobullets{ list-style:none}
+.automargin{ margin:auto}
+
+.noventa{ width:90%}
+.ochenta{ width:80%;}
+.setenta{ width:70%}
+.sesenta{ width:60%}
+.veinte{ width:20%; text-align:center}
+
+.red{color:#820403; margin-top:2%; font-size:14px}
+.red a{color:#820403; margin-top:2%; font-size:14px}
+#footer{ background-color:#FFFFFF;}
+.block{ display:inline-block; margin:5px; height:auto}
+.btn{
+	color:#FFF; margin:5px; padding:6px 10px; background-color:#900; border:0px; box-shadow:2px 2px 5px #999;
+		 -webkit-box-shadow: 2px 2px 5px #999;
+    	 -moz-box-shadow: 2px 2px 5px #999; cursor:pointer
+	}
