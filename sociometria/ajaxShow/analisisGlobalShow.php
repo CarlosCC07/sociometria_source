@@ -90,14 +90,14 @@
 			echo "<select>";
 			echo "</div>";
 
-                        echo "<div align=\"center\" id=\"ad\" class=\"span4\">";
-                        echo "<b>Segmento</b><br><br>";
-                        echo "<select id=\"seg\" name=\"".$typeVar."\" class=\"span4\" onchange=\"changeGlobalOrder(this)\">";
-                        echo "<option >Todos</option>";
-                        echo "<option >Empleados</option>";
-                        echo "<option >Sindicalizados</option>";
-                        echo "<select>";
-                        echo "</div>";
+            echo "<div align=\"center\" id=\"ad\" class=\"span4\">";
+            echo "<b>Segmento</b><br><br>";
+            echo "<select id=\"seg\" name=\"".$typeVar."\" class=\"span4\" onchange=\"changeGlobalOrder(this)\">";
+            echo "<option >Todos</option>";
+            echo "<option >Empleados</option>";
+            echo "<option >Sindicalizados</option>";
+            echo "<select>";
+            echo "</div>";
 
 			echo "<div align=\"right\" id=\"ad\" class=\"span4\">";
 			echo "<b>Forma de ordenamiento</b><br><br>";
@@ -134,7 +134,15 @@
 				$meses = $interval->m;
 				$rank = $i+1;
 
-				echo"<tr class=\"per".$info[$i]->extra."\" onclick=\"\" ><td style=\"text-align:center;\">".$rank."</td><td style=\"text-align:right;\">".$info[$i]->idTrabajador."</td><td style=\"text-align:center;\">";
+				echo "<tr class=\"per".$info[$i]->extra."\" onclick=\"\" >";
+
+				if($info[$i]->tipoTrabajador == 0) {
+					echo "<td style=\"text-align:center;font-weight:bold;color:red;\">".$rank."</td>";
+				} else {
+					echo "<td style=\"text-align:center;font-weight:bold;\">".$rank."</td>";
+				}
+
+				echo "<td style=\"text-align:right;\">".$info[$i]->idTrabajador."</td><td style=\"text-align:center;\">";
 
                                 if($years == 1 && $meses == 1){
                                     echo $years." a. - ".$meses." m.</td>";

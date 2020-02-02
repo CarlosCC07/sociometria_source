@@ -144,7 +144,7 @@
                         $rank = $i+1;
 
 			echo"<tr class=\"per".$info[$i]->extra." \" onclick=\"analisisPerson(".$info[$i]->idTrabajador.",".$typeVar.",".$plant.")\" >";
-			echo "<td style=\"text-align:right;\">".$rank."</td>";
+			echo "<td style=\"text-align:center;\">".$rank."</td>";
 			echo "<td style=\"text-align:right;\">".$info[$i]->idTrabajador."</td>";
 
                         if($years == 1 && $meses == 1){
