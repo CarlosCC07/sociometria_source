@@ -133,7 +133,7 @@
                                 $years = $interval->y;
 				$meses = $interval->m;
 
-				echo"<tr class=\"per".$info[$i]->extra."\" onclick=\"\" ><td style=\"text-align:center;\">".$i+1."</td><td style=\"text-align:right;\">".$info[$i]->idTrabajador."</td><td style=\"text-align:center;\">";
+				echo "<tr class=\"per".$info[$i]->extra."\" onclick=\"\" ><td style=\"text-align:center;\">".$i+1."</td><td style=\"text-align:right;\">".$info[$i]->idTrabajador."</td><td style=\"text-align:center;\">";
 
                                 if($years == 1 && $meses == 1){
                                     echo $years." a. - ".$meses." m.</td>";
