@@ -122,7 +122,7 @@
 			
 			echo "<table class=\"table table-condensed table-bordered navbar\" style=\"text-align:center;\">";
 
-			echo "<tr class=\"title\" style=\"background-color:rgb(65, 105, 225);color:white;\"><th rowspan=\"2\" style=\"text-align:center;\">#</th><th rowspan=\"2\" style=\"text-align:center;\">Antiguedad</th><th rowspan=\"2\" style=\"text-align:center;\">Nombre</th><th colspan=\"2\" style=\"text-align:center;\">Ascendencia</th><th colspan=\"2\" style=\"text-align:center;\">Afinidad</th><th colspan=\"2\" style=\"text-align:center;\">Popularidad</th><th colspan=\"2\" style=\"text-align:center;\">Total</th><th rowspan=\"2\" style=\"text-align:center;\">Total</th><th rowspan=\"2\" style=\"text-align:center;\">Total <br>Amp.</th></tr>";
+			echo "<tr class=\"title\" style=\"background-color:rgb(65, 105, 225);color:white;\"><th rowspan=\"2\" style=\"text-align:center;\">Ranking</th><th rowspan=\"2\" style=\"text-align:center;\">#</th><th rowspan=\"2\" style=\"text-align:center;\">Antiguedad</th><th rowspan=\"2\" style=\"text-align:center;\">Nombre</th><th colspan=\"2\" style=\"text-align:center;\">Ascendencia</th><th colspan=\"2\" style=\"text-align:center;\">Afinidad</th><th colspan=\"2\" style=\"text-align:center;\">Popularidad</th><th colspan=\"2\" style=\"text-align:center;\">Total</th><th rowspan=\"2\" style=\"text-align:center;\">Total</th><th rowspan=\"2\" style=\"text-align:center;\">Total <br>Amp.</th></tr>";
 			echo "<tr class=\"title\" style=\"background-color:rgb(65, 105, 225);color:white;\"><th style=\"text-align:center;\">Dir.</th><th style=\"text-align:center;\">Ind.</th><th style=\"text-align:center;\">Dir.</th><th style=\"text-align:center;\">Ind.</th><th style=\"text-align:center;\">Dir.</th><th style=\"text-align:center;\">Ind.</th><th style=\"text-align:center;\">Dir.</th><th style=\"text-align:center;\">Ind.</th></tr>";
 			
 			for($i=0;$i<$total;$i++){
@@ -133,7 +133,7 @@
                                 $years = $interval->y;
 				$meses = $interval->m;
 
-				echo"<tr class=\"per".$info[$i]->extra."\" onclick=\"\" ><td style=\"text-align:right;\">".$info[$i]->idTrabajador."</td><td style=\"text-align:center;\">";
+				echo"<tr class=\"per".$info[$i]->extra."\" onclick=\"\" ><td style=\"text-align:center;\">0</td><td style=\"text-align:right;\">".$info[$i]->idTrabajador."</td><td style=\"text-align:center;\">";
 
                                 if($years == 1 && $meses == 1){
                                     echo $years." a. - ".$meses." m.</td>";
