@@ -72,7 +72,7 @@
 				case 9:$orderBy="cp.totalAmp";$typeTitle="Total Ampliado";break;
 			}
 			
-			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, cp.ascendenciaDir,cp.ascendenciaInd,cp.afinidadDir, cp.afinidadInd, cp.popularidadDir,cp.popularidadInd,cp.totalDirecto,cp.totalIndirecto,cp.total,cp.totalAmp FROM contadorPersona cp, personas p WHERE p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY ".$orderBy." DESC ".$limit.""; //LIMIT 0 , 10
+			$sql="SELECT p.idTrabajador, p.extra, p.tipoTrabajador, p.nombre, p.fechaIngreso, cp.ascendenciaDir,cp.ascendenciaInd,cp.afinidadDir, cp.afinidadInd, cp.popularidadDir,cp.popularidadInd,cp.totalDirecto,cp.totalIndirecto,cp.total,cp.totalAmp FROM contadorPersona cp, personas p WHERE p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY ".$orderBy." DESC ".$limit.""; //LIMIT 0 , 10
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
@@ -137,9 +137,9 @@
 				echo "<tr class=\"per".$info[$i]->extra."\" onclick=\"\" >";
 
 				if($info[$i]->tipoTrabajador == 0) {
-					echo "<td style=\"text-align:center;font-weight:bold;color:red;\">".$info[$i]->tipoTrabajador."</td>";
+					echo "<td style=\"text-align:center;font-weight:bold;color:red;\">".$rank."</td>";
 				} else {
-					echo "<td style=\"text-align:center;font-weight:bold;\">".$info[$i]->tipoTrabajador."</td>";
+					echo "<td style=\"text-align:center;font-weight:bold;\">".$rank."</td>";
 				}
 
 				echo "<td style=\"text-align:right;\">".$info[$i]->idTrabajador."</td><td style=\"text-align:center;\">";
