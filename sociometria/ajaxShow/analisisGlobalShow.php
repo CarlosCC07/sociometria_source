@@ -137,9 +137,9 @@
 				echo "<tr class=\"per".$info[$i]->extra."\" onclick=\"\" >";
 
 				if($info[$i]->tipoTrabajador == 0) {
-					echo "<td style=\"text-align:center;font-weight:bold;color:red;\">".$rank." ".$info[$i]->tipoTrabajador."</td>";
+					echo "<td style=\"text-align:center;font-weight:bold;color:red;\">".$info[$i]->tipoTrabajador."</td>";
 				} else {
-					echo "<td style=\"text-align:center;font-weight:bold;\">".$rank." ".$info[$i]->tipoTrabajador."</td>";
+					echo "<td style=\"text-align:center;font-weight:bold;\">".$info[$i]->tipoTrabajador."</td>";
 				}
 
 				echo "<td style=\"text-align:right;\">".$info[$i]->idTrabajador."</td><td style=\"text-align:center;\">";
