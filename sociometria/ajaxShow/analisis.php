@@ -79,7 +79,7 @@
 		$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	
-		$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY cp.".$orderBy." DESC ".$limit."";
+		$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY cp.".$orderBy." DESC ".$limit."";
 		$stmt = $dbh->prepare($sql);
 		$stmt->execute();
 		$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
@@ -144,7 +144,13 @@
                         $rank = $i+1;
 
 			echo"<tr class=\"per".$info[$i]->extra." \" onclick=\"analisisPerson(".$info[$i]->idTrabajador.",".$typeVar.",".$plant.")\" >";
-			echo "<td style=\"text-align:center;\">".$rank."</td>";
+
+			if($info[$i]->tipoTrabajador == 0) {
+				echo "<td style=\"text-align:center;font-weight:bold;color:red;\">".$rank."</td>";
+			} else {
+				echo "<td style=\"text-align:center;font-weight:bold;\">".$rank."</td>";
+			}
+
 			echo "<td style=\"text-align:right;\">".$info[$i]->idTrabajador."</td>";
 
                         if($years == 1 && $meses == 1){
