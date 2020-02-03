@@ -40,7 +40,7 @@
 					$dataPerson = $stmt->fetchAll(PDO::FETCH_OBJ); //Saco todas las personas que fueron votadas
 					
 					echo "<table class=\"table-bordered\" width=\"25%\" height=\"8%\" style=\"display: inline-table;background-color:#4169E1!important;color:white!important;position:relative;left:".$left."%;font-size:11px;\">";
-					echo "<tr><td colspan=\"2\" style=\"text-align:center;color:4169E1;background-color:#FFFFFF;\">".$i."a. Opción</td></tr>";
+					echo "<tr><td colspan=\"2\" style=\"text-align:center;color:#4169E1;background-color:#FFFFFF;\">".$i."a. Opción</td></tr>";
 					echo "<tr><td colspan=\"2\">".$dataPerson[0]->idTrabajador."</td></tr>";
 					echo "<tr><td colspan=\"2\" style=\"text-align:center;border-top: none;\" ><a style=\"text-align:center;color:FFFFFF;\" onclick=\"analisisPerson(".$dataPerson[0]->idTrabajador.",".$_GET["type"].")\">".utf8_encode($dataPerson[0]->nombre)."</a></td></tr>";
 				        echo "<tr><td colspan=\"2\" style=\"text-align:center;border-top: none;\" ><strong><a style=\"text-align:center;color:FFFFFF;\" onclick=\"analisisPerson(".$dataPerson[0]->idTrabajador.",".$_GET["type"].")\">".utf8_encode($dataPerson[0]->puesto)."</a></strong></td></tr>";
@@ -62,7 +62,7 @@
 						
 						$name = (empty($dataPerson[0]->nombreRepetido))?"SIN VOTO":strtoupper($dataPerson[0]->nombreRepetido);
 						echo "<table class=\"table-bordered\" width=\"22%\" height=\"8%\" style=\"display: inline-table;background-color:#4169E1!important;color:white!important;position:relative;left:".$left."%;font-size:11px;\">";
-						echo "<tr><td colspan=\"2\" style=\"text-align:center;color:4169E1;background-color:#FFFFFF;\">".$i."a. Opción</td></tr>";
+						echo "<tr><td colspan=\"2\" style=\"text-align:center;color:#4169E1;background-color:#FFFFFF;\">".$i."a. Opción</td></tr>";
 						echo "<tr><td colspan=\"2\">--</td></tr>";
 						echo "<tr><td colspan=\"2\" style=\"text-align:center;border-top: none;color:FFFFFF;\" >".utf8_encode($name)."</td></tr>";
 								
@@ -136,7 +136,7 @@
 					$dataPersons = $stmt->fetchAll(PDO::FETCH_OBJ); //Saco todas las personas que fueron votadas
 					$total = count($dataPersons);
 					echo "<table class=\"table-bordered\" width=\"30%\" height=\"8%\" style=\"display: inline-table;background-color:#4169E1!important;color:white;position:relative;left:".$left."%;font-size:11px;\">";
-					echo "<tr><td colspan=\"4\" style=\"text-align:center;color:4169E1;background-color:#FFFFFF;\">".$i."a. Opción</td></tr>";
+					echo "<tr><td colspan=\"4\" style=\"text-align:center;color:#4169E1;background-color:#FFFFFF;\">".$i."a. Opción</td></tr>";
 					echo "<tr><td></td><td></td><td style=\"text-align:center;\">D</td><td style=\"text-align:center;\">I</td></tr>";
 					if($total){
 					
