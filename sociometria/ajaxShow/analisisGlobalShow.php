@@ -60,7 +60,7 @@
 			$sql2="SELECT p.idTrabajador, p.tipoTrabajador FROM personas p";
 			$stmt2 = $dbh->prepare($sql2);
 			$stmt2->execute();
-			$info_hc = $stmt2>fetchAll(PDO::FETCH_OBJ);
+			$info_hc = $stmt2->fetchAll(PDO::FETCH_OBJ);
 			$total_hc = count($info_hc);
 			
 			$orderBy="";
