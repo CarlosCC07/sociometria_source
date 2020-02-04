@@ -12,17 +12,16 @@
 		$typeVar = $_GET["plant"];
 		$order = $_GET["orderBy"];
 		$quantityLimit = $_GET["limit"];
-                $segment = $_GET["seg"];
+        $segment = $_GET["seg"];
 		$extra = $_GET["value"];
 		$extraString="";
 		switch($extra){
-				case 0:break;
-				case 1:
-				case 2:
-				case 3:
-				case 4:
-				case 5:$extraString = "AND p.extra = ".$extra."";break;
-				
+			case 0:break;
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:$extraString = "AND p.extra = ".$extra."";break;
 		}		
 
 		
@@ -48,11 +47,11 @@
 			$plantString="";
 		}
 		
-                switch($segment){
-                        case 0:$segmentString ="";break;//todos
-                        case 1:$segmentString ="AND p.tipoTrabajador = 1";break;
-                        case 2:$segmentString ="AND p.tipoTrabajador = 0";break;
-                }
+        switch($segment){
+                case 0:$segmentString ="";break;//todos
+                case 1:$segmentString ="AND p.tipoTrabajador = 1";break;
+                case 2:$segmentString ="AND p.tipoTrabajador = 0";break;
+        }
 		
 		try {
 			$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
@@ -122,8 +121,21 @@
 			
 			echo "<table class=\"table table-condensed table-bordered navbar\" style=\"text-align:center;\">";
 
-			echo "<tr class=\"title\" style=\"background-color:rgb(65, 105, 225);color:white;\"><th rowspan=\"2\" style=\"text-align:center;\">Ranking</th><th rowspan=\"2\" style=\"text-align:center;\">#</th><th rowspan=\"2\" style=\"text-align:center;\">Antiguedad</th><th rowspan=\"2\" style=\"text-align:center;\">Nombre</th><th colspan=\"2\" style=\"text-align:center;\">Ascendencia</th><th colspan=\"2\" style=\"text-align:center;\">Afinidad</th><th colspan=\"2\" style=\"text-align:center;\">Popularidad</th><th colspan=\"2\" style=\"text-align:center;\">Total Menciones</th><th rowspan=\"2\" style=\"text-align:center;\">Total PD</th><th rowspan=\"2\" style=\"text-align:center;\"> % / HC</th></tr>";
+			echo "<tr class=\"title\" style=\"background-color:rgb(65, 105, 225);color:white;\"><th rowspan=\"2\" style=\"text-align:center;\">RK</th><th rowspan=\"2\" style=\"text-align:center;\">#</th><th rowspan=\"2\" style=\"text-align:center;\">Antig.</th><th rowspan=\"2\" style=\"text-align:center;\">Nombre</th><th colspan=\"2\" style=\"text-align:center;\">Ascendencia</th><th colspan=\"2\" style=\"text-align:center;\">Afinidad</th><th colspan=\"2\" style=\"text-align:center;\">Popularidad</th><th colspan=\"2\" style=\"text-align:center;\">Total Menciones</th><th rowspan=\"2\" style=\"text-align:center;\">Total PD</th><th rowspan=\"2\" style=\"text-align:center;\"> % / HC</th></tr>";
 			echo "<tr class=\"title\" style=\"background-color:rgb(65, 105, 225);color:white;\"><th style=\"text-align:center;\">Dir.</th><th style=\"text-align:center;\">Ind.</th><th style=\"text-align:center;\">Dir.</th><th style=\"text-align:center;\">Ind.</th><th style=\"text-align:center;\">Dir.</th><th style=\"text-align:center;\">Ind.</th><th style=\"text-align:center;\">Dir.</th><th style=\"text-align:center;\">Ind.</th></tr>";
+
+			$total_hc = 0;
+			$seg_hc = 0;
+			$emp_hc = 0;
+
+			for($j=0;$j<sizeof($info);$j++){
+				$total_hc++;
+				if($info[$j]->tipoTrabajador == 0){
+					$seg_hc++;
+				} else {
+					$emp_hc++;
+				}
+			}
 			
 			for($i=0;$i<$total;$i++){
 				
@@ -133,6 +145,14 @@
                                 $years = $interval->y;
 				$meses = $interval->m;
 				$rank = $i+1;
+
+				if($segment == 1) {
+					$phc = ceil(($info[$i]->total)/$emp_hc);
+				} else if($segment == 2) {
+					$phc = ceil(($info[$i]->total)/$seg_hc);
+				} else {
+					$phc = ceil(($info[$i]->total)/$total_hc);
+				}
 
 				echo "<tr class=\"per".$info[$i]->extra."\" onclick=\"\" >";
 
@@ -144,23 +164,24 @@
 
 				echo "<td style=\"text-align:right;\">".$info[$i]->idTrabajador."</td><td style=\"text-align:center;\">";
 
-                                if($years == 1 && $meses == 1){
-                                    echo $years." a. - ".$meses." m.</td>";
-                                }else if($years == 1 && $meses != 1){
-                                    echo $years." a. - ".$meses." m.</td>";
-                                }else if($years != 1 && $meses == 1){
-                                    echo $years." a. - ".$meses." m.</td>";
-                                }else{
-                                    echo $years." a. - ".$meses." m.</td>";
-                                }
+                if($years == 1 && $meses == 1){
+                    echo $years."a-".$meses."m</td>";
+                }else if($years == 1 && $meses != 1){
+                    echo $years."a-".$meses."m</td>";
+                }else if($years != 1 && $meses == 1){
+                    echo $years."a-".$meses."m</td>";
+                }else{
+                    echo $years."a-".$meses."m</td>";
+                }
 
-                                echo "<td ><a onclick=\"whichInfo(".$info[$i]->idTrabajador.",'".utf8_encode($info[$i]->nombre)."')\" style=\"color:black;\">".utf8_encode($info[$i]->nombre)."</a></td>";
+                echo "<td ><a onclick=\"whichInfo(".$info[$i]->idTrabajador.",'".utf8_encode($info[$i]->nombre)."')\" style=\"color:black;\">".utf8_encode($info[$i]->nombre)."</a></td>";
 				echo "<td style=\"text-align:center;\">".$info[$i]->ascendenciaDir."</td><td style=\"text-align:center;\">".$info[$i]->ascendenciaInd."</td>";
 				echo "<td style=\"text-align:center;\">".$info[$i]->afinidadDir."</td><td style=\"text-align:center;\">".$info[$i]->afinidadInd."</td>";
 				echo "<td style=\"text-align:center;\">".$info[$i]->popularidadDir."</td><td style=\"text-align:center;\">".$info[$i]->popularidadInd."</td>";
 				echo "<td style=\"text-align:center;\">".$info[$i]->totalDirecto."</td><td style=\"text-align:center;\">".$info[$i]->totalIndirecto."</td>";
 				echo "<td style=\"text-align:center;\">".$info[$i]->total."</td>";
-				echo "<td style=\"text-align:center;\">".$info[$i]->totalAmp."</td></tr>";
+				// Percentaje replaced totalAmp
+				echo "<td style=\"text-align:center;\">".$phc."</td></tr>";
 				
 				
 			}

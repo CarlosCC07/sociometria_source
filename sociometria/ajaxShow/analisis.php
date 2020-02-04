@@ -122,9 +122,9 @@
 		echo "<table class=\"table table-condensed table-bordered navbar \" style=\"text-align:center;\">";
 
 		echo "<tr class=\"title\" style=\"background-color:rgb(65, 105, 225);\">";
-		echo "<th rowspan=\"2\" >Ranking</th>";
+		echo "<th rowspan=\"2\" >RK</th>";
 		echo "<th rowspan=\"2\" >#</th>";
-        echo "<th rowspan=\"2\" >Antiguedad</th>";
+        echo "<th rowspan=\"2\" >Antig.</th>";
 		echo "<th rowspan=\"2\" >Nombre</th>";
 		echo "<th colspan=\"2\" >".(ucfirst($type))."</th>";
 		echo "<th rowspan=\"2\">Total</th>";
@@ -154,13 +154,13 @@
 			echo "<td style=\"text-align:right;\">".$info[$i]->idTrabajador."</td>";
 
                         if($years == 1 && $meses == 1){
-                            echo "<td style=\"text-align:center;\">".$years." a. - ".$meses." m.</td>";
+                            echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
                         }else if($years == 1 && $meses != 1){
-                            echo "<td style=\"text-align:center;\">".$years." a. - ".$meses." m.</td>";
+                            echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
                         }else if($years != 1 && $meses == 1){
-                            echo "<td style=\"text-align:center;\">".$years." a. - ".$meses." m.</td>";
+                            echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
                         }else{
-                            echo "<td style=\"text-align:center;\">".$years." a. - ".$meses." m.</td>";
+                            echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
                         }
 
 			echo "<td><a style=\"text-align:center;color:#000000\">".utf8_encode($info[$i]->nombre)."</a></td>";
