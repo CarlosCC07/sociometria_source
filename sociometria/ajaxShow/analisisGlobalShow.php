@@ -42,9 +42,11 @@
 		if($typeVar != 10){
 			$plantTitle = $_SESSION['plants'][$typeVar];
 			$plantString="AND p.planta = ".$typeVar."";
+			$sql2="SELECT p.idTrabajador, p.tipoTrabajador FROM personas p WHERE p.planta = ".$typeVar."";
 		}else{
 			$plantTitle = "Global";
 			$plantString="";
+			$sql2="SELECT p.idTrabajador, p.tipoTrabajador FROM personas p";
 		}
 		
         switch($segment){
@@ -57,7 +59,6 @@
 			$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
 			$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-			$sql2="SELECT p.idTrabajador, p.tipoTrabajador FROM personas p";
 			$stmt2 = $dbh->prepare($sql2);
 			$stmt2->execute();
 			$info_hc = $stmt2->fetchAll(PDO::FETCH_OBJ);
