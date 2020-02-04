@@ -147,9 +147,9 @@
 				$rank = $i+1;
 
 				if($segment == 1) {
-					$phc = ceil((($info[$i]->total)/$emp_hc)*100;
+					$phc = ceil((($info[$i]->total)/$emp_hc)*100);
 				} else if($segment == 2) {
-					$phc = ceil((($info[$i]->total)/$seg_hc)*100;
+					$phc = ceil((($info[$i]->total)/$seg_hc)*100);
 				} else {
 					$phc = ceil((($info[$i]->total)/$total_hc)*100);
 				}
