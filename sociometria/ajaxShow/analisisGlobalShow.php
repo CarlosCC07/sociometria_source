@@ -56,6 +56,12 @@
 		try {
 			$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
 			$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+			$sql2="SELECT p.idTrabajador, p.tipoTrabajador FROM personas p";
+			$stmt2 = $dbh->prepare($sql2);
+			$stmt2->execute();
+			$info_hc = $stmt2>fetchAll(PDO::FETCH_OBJ);
+			$total_hc = count($info_hc);
 			
 			$orderBy="";
 			switch($order){
@@ -124,13 +130,11 @@
 			echo "<tr class=\"title\" style=\"background-color:rgb(65, 105, 225);color:white;\"><th rowspan=\"2\" style=\"text-align:center;\">RK</th><th rowspan=\"2\" style=\"text-align:center;\">#</th><th rowspan=\"2\" style=\"text-align:center;\">Antig.</th><th rowspan=\"2\" style=\"text-align:center;\">Nombre</th><th colspan=\"2\" style=\"text-align:center;\">Ascendencia</th><th colspan=\"2\" style=\"text-align:center;\">Afinidad</th><th colspan=\"2\" style=\"text-align:center;\">Popularidad</th><th colspan=\"2\" style=\"text-align:center;\">Total Menciones</th><th rowspan=\"2\" style=\"text-align:center;\">Total PD</th><th rowspan=\"2\" style=\"text-align:center;\"> % / HC</th></tr>";
 			echo "<tr class=\"title\" style=\"background-color:rgb(65, 105, 225);color:white;\"><th style=\"text-align:center;\">Dir.</th><th style=\"text-align:center;\">Ind.</th><th style=\"text-align:center;\">Dir.</th><th style=\"text-align:center;\">Ind.</th><th style=\"text-align:center;\">Dir.</th><th style=\"text-align:center;\">Ind.</th><th style=\"text-align:center;\">Dir.</th><th style=\"text-align:center;\">Ind.</th></tr>";
 
-			$total_hc = 0;
 			$seg_hc = 0;
 			$emp_hc = 0;
 
-			for($j=0;$j<count($info);$j++){
-				$total_hc++;
-				if($info[$j]->tipoTrabajador == 0){
+			for($j=0;$j<$total_hc;$j++){
+				if($info_hc[$j]->tipoTrabajador == 0){
 					$seg_hc++;
 				} else {
 					$emp_hc++;
@@ -181,7 +185,7 @@
 				echo "<td style=\"text-align:center;\">".$info[$i]->totalDirecto."</td><td style=\"text-align:center;\">".$info[$i]->totalIndirecto."</td>";
 				echo "<td style=\"text-align:center;\">".$info[$i]->total."</td>";
 				// Percentaje replaced totalAmp
-				echo "<td style=\"text-align:center;\">".$total_hc."</td></tr>";
+				echo "<td style=\"text-align:center;\">".$phc."</td></tr>";
 				
 				
 			}
