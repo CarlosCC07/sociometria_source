@@ -128,7 +128,7 @@
 			$seg_hc = 0;
 			$emp_hc = 0;
 
-			for($j=0;$j<sizeof($info);$j++){
+			for($j=0;$j<count($info);$j++){
 				$total_hc++;
 				if($info[$j]->tipoTrabajador == 0){
 					$seg_hc++;
