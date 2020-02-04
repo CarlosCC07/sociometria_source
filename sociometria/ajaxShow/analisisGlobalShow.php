@@ -147,11 +147,11 @@
 				$rank = $i+1;
 
 				if($segment == 1) {
-					$phc = ceil(($info[$i]->total)/$emp_hc);
+					$phc = ceil((($info[$i]->total)/$emp_hc)*100;
 				} else if($segment == 2) {
-					$phc = ceil(($info[$i]->total)/$seg_hc);
+					$phc = ceil((($info[$i]->total)/$seg_hc)*100;
 				} else {
-					$phc = ceil(($info[$i]->total)/$total_hc);
+					$phc = ceil((($info[$i]->total)/$total_hc)*100);
 				}
 
 				echo "<tr class=\"per".$info[$i]->extra."\" onclick=\"\" >";
