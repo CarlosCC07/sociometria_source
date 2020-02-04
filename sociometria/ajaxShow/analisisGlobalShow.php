@@ -181,7 +181,7 @@
 				echo "<td style=\"text-align:center;\">".$info[$i]->totalDirecto."</td><td style=\"text-align:center;\">".$info[$i]->totalIndirecto."</td>";
 				echo "<td style=\"text-align:center;\">".$info[$i]->total."</td>";
 				// Percentaje replaced totalAmp
-				echo "<td style=\"text-align:center;\">".$phc."</td></tr>";
+				echo "<td style=\"text-align:center;\">".$total_hc."</td></tr>";
 				
 				
 			}
