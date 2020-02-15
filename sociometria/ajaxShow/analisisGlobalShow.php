@@ -31,7 +31,7 @@
 		$plantTitle= "";
 		$typeTitle= "";
 		$limit = "";
-                $segmentString = "";
+        $segmentString = "";
 		switch($quantityLimit){
 			case 0:$limit ="LIMIT 0 , 10";break;
 			case 1:$limit ="LIMIT 0 , 50";break;
@@ -76,12 +76,21 @@
 				case 8:$orderBy="cp.total";$typeTitle="Total";break;
 				case 9:$orderBy="cp.totalAmp";$typeTitle="Total Ampliado";break;
 			}
+
+			if($extra == 0){
+				$sql="SELECT p.idTrabajador, p.extra, p.tipoTrabajador, p.nombre, p.fechaIngreso, cp.ascendenciaDir,cp.ascendenciaInd,cp.afinidadDir, cp.afinidadInd, cp.popularidadDir,cp.popularidadInd,cp.totalDirecto,cp.totalIndirecto,cp.total,cp.totalAmp FROM contadorPersona cp, personas p WHERE p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY ".$orderBy." DESC ".$limit.""; //LIMIT 0 , 10
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+				$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
+				$total = count($info);
+			} else {
+				$sql="SELECT p.idTrabajador, p.extra, p.tipoTrabajador, p.nombre, p.fechaIngreso, cp.ascendenciaDir,cp.ascendenciaInd,cp.afinidadDir, cp.afinidadInd, cp.popularidadDir,cp.popularidadInd,cp.totalDirecto,cp.totalIndirecto,cp.total,cp.totalAmp FROM contadorPersona cp, personas p WHERE p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY ".$orderBy." DESC ";
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+				$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
+				$total = count($info);
+			}
 			
-			$sql="SELECT p.idTrabajador, p.extra, p.tipoTrabajador, p.nombre, p.fechaIngreso, cp.ascendenciaDir,cp.ascendenciaInd,cp.afinidadDir, cp.afinidadInd, cp.popularidadDir,cp.popularidadInd,cp.totalDirecto,cp.totalIndirecto,cp.total,cp.totalAmp FROM contadorPersona cp, personas p WHERE p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY ".$orderBy." DESC ".$limit.""; //LIMIT 0 , 10
-			$stmt = $dbh->prepare($sql);
-			$stmt->execute();
-			$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
-			$total = count($info);
 			$class = "";
 			
 			echo "<div class=\"row\">";
@@ -146,47 +155,56 @@
 				$d1 = new DateTime($info[$i]->fechaIngreso);
 				$d2 = new DateTime(date('Y-m-d'));
 				$interval = $d2->diff($d1);
-                                $years = $interval->y;
+                $years = $interval->y;
 				$meses = $interval->m;
 				$rank = $i+1;
 
-				if($segment == 1) {
-					$phc = ceil((($info[$i]->total)/$emp_hc)*100);
-				} else if($segment == 2) {
-					$phc = ceil((($info[$i]->total)/$seg_hc)*100);
-				} else {
-					$phc = ceil((($info[$i]->total)/$total_hc)*100);
+				if($extra == 0 || $extra == $info[$i]->extra){
+					if($segment == 1) {
+						$phc = ceil((($info[$i]->total)/$emp_hc)*100);
+					} else if($segment == 2) {
+						$phc = ceil((($info[$i]->total)/$seg_hc)*100);
+					} else {
+						$phc = ceil((($info[$i]->total)/$total_hc)*100);
+					}
+
+					echo "<tr class=\"per".$info[$i]->extra."\" onclick=\"\" >";
+
+					if($extra == 0){
+						if($info[$i]->tipoTrabajador == 0) {
+							echo "<td style=\"text-align:center;font-weight:bold;color:red;\">".$rank."</td>";
+						} else {
+							echo "<td style=\"text-align:center;font-weight:bold;\">".$rank."</td>";
+						}
+					} else if($extra == $info[$i]->extra) {
+						if($info[$i]->tipoTrabajador == 0) {
+							echo "<td style=\"text-align:center;font-weight:bold;color:red;\">".$rank."</td>";
+						} else {
+							echo "<td style=\"text-align:center;font-weight:bold;\">".$rank."</td>";
+						}
+					}
+
+					echo "<td style=\"text-align:right;\">".$info[$i]->idTrabajador."</td><td style=\"text-align:center;\">";
+
+	                if($years == 1 && $meses == 1){
+	                    echo $years."a-".$meses."m</td>";
+	                }else if($years == 1 && $meses != 1){
+	                    echo $years."a-".$meses."m</td>";
+	                }else if($years != 1 && $meses == 1){
+	                    echo $years."a-".$meses."m</td>";
+	                }else{
+	                    echo $years."a-".$meses."m</td>";
+	                }
+
+	                echo "<td ><a onclick=\"whichInfo(".$info[$i]->idTrabajador.",'".utf8_encode($info[$i]->nombre)."')\" style=\"color:black;\">".utf8_encode($info[$i]->nombre)."</a></td>";
+					echo "<td style=\"text-align:center;\">".$info[$i]->ascendenciaDir."</td><td style=\"text-align:center;\">".$info[$i]->ascendenciaInd."</td>";
+					echo "<td style=\"text-align:center;\">".$info[$i]->afinidadDir."</td><td style=\"text-align:center;\">".$info[$i]->afinidadInd."</td>";
+					echo "<td style=\"text-align:center;\">".$info[$i]->popularidadDir."</td><td style=\"text-align:center;\">".$info[$i]->popularidadInd."</td>";
+					echo "<td style=\"text-align:center;\">".$info[$i]->totalDirecto."</td><td style=\"text-align:center;\">".$info[$i]->totalIndirecto."</td>";
+					echo "<td style=\"text-align:center;\">".$info[$i]->total."</td>";
+					// Percentaje replaced totalAmp
+					echo "<td style=\"text-align:center;\">".$phc."</td></tr>";
 				}
-
-				echo "<tr class=\"per".$info[$i]->extra."\" onclick=\"\" >";
-
-				if($info[$i]->tipoTrabajador == 0) {
-					echo "<td style=\"text-align:center;font-weight:bold;color:red;\">".$rank."</td>";
-				} else {
-					echo "<td style=\"text-align:center;font-weight:bold;\">".$rank."</td>";
-				}
-
-				echo "<td style=\"text-align:right;\">".$info[$i]->idTrabajador."</td><td style=\"text-align:center;\">";
-
-                if($years == 1 && $meses == 1){
-                    echo $years."a-".$meses."m</td>";
-                }else if($years == 1 && $meses != 1){
-                    echo $years."a-".$meses."m</td>";
-                }else if($years != 1 && $meses == 1){
-                    echo $years."a-".$meses."m</td>";
-                }else{
-                    echo $years."a-".$meses."m</td>";
-                }
-
-                echo "<td ><a onclick=\"whichInfo(".$info[$i]->idTrabajador.",'".utf8_encode($info[$i]->nombre)."')\" style=\"color:black;\">".utf8_encode($info[$i]->nombre)."</a></td>";
-				echo "<td style=\"text-align:center;\">".$info[$i]->ascendenciaDir."</td><td style=\"text-align:center;\">".$info[$i]->ascendenciaInd."</td>";
-				echo "<td style=\"text-align:center;\">".$info[$i]->afinidadDir."</td><td style=\"text-align:center;\">".$info[$i]->afinidadInd."</td>";
-				echo "<td style=\"text-align:center;\">".$info[$i]->popularidadDir."</td><td style=\"text-align:center;\">".$info[$i]->popularidadInd."</td>";
-				echo "<td style=\"text-align:center;\">".$info[$i]->totalDirecto."</td><td style=\"text-align:center;\">".$info[$i]->totalIndirecto."</td>";
-				echo "<td style=\"text-align:center;\">".$info[$i]->total."</td>";
-				// Percentaje replaced totalAmp
-				echo "<td style=\"text-align:center;\">".$phc."</td></tr>";
-				
 				
 			}
 			echo "</table>";

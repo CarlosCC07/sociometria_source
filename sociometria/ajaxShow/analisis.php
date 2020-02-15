@@ -78,12 +78,21 @@
 	try {
 		$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		if($extra == 0){
+			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY cp.".$orderBy." DESC ".$limit."";
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
+			$total = count($info);
+		} else {
+			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY cp.".$orderBy." DESC ";
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
+			$total = count($info);
+		}
 	
-		$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY cp.".$orderBy." DESC ".$limit."";
-		$stmt = $dbh->prepare($sql);
-		$stmt->execute();
-		$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
-		$total = count($info);
 		$class = "";
 
 		echo "<div class=\"row\">";
@@ -135,41 +144,42 @@
 		echo "</tr>";
 		for($i=0;$i<$total;$i++){
 		
-                        $d1 = new DateTime($info[$i]->fechaIngreso);
-                        $d2 = new DateTime(date('Y-m-d'));
+            $d1 = new DateTime($info[$i]->fechaIngreso);
+            $d2 = new DateTime(date('Y-m-d'));
 
-                        $interval = $d2->diff($d1);
-                        $years = $interval->y;
-                        $meses = $interval->m;
-                        $rank = $i+1;
+            $interval = $d2->diff($d1);
+            $years = $interval->y;
+            $meses = $interval->m;
+            $rank = $i+1;
 
-			echo"<tr class=\"per".$info[$i]->extra." \" onclick=\"analisisPerson(".$info[$i]->idTrabajador.",".$typeVar.",".$plant.")\" >";
+            if($extra == 0 || $extra == $info[$i]->extra){
+            	echo"<tr class=\"per".$info[$i]->extra." \" onclick=\"analisisPerson(".$info[$i]->idTrabajador.",".$typeVar.",".$plant.")\" >";
 
-			if($info[$i]->tipoTrabajador == 0) {
-				echo "<td style=\"text-align:center;font-weight:bold;color:red;\">".$rank."</td>";
-			} else {
-				echo "<td style=\"text-align:center;font-weight:bold;\">".$rank."</td>";
-			}
+				if($info[$i]->tipoTrabajador == 0) {
+					echo "<td style=\"text-align:center;font-weight:bold;color:red;\">".$rank."</td>";
+				} else {
+					echo "<td style=\"text-align:center;font-weight:bold;\">".$rank."</td>";
+				}
 
-			echo "<td style=\"text-align:right;\">".$info[$i]->idTrabajador."</td>";
+				echo "<td style=\"text-align:right;\">".$info[$i]->idTrabajador."</td>";
 
-                        if($years == 1 && $meses == 1){
-                            echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
-                        }else if($years == 1 && $meses != 1){
-                            echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
-                        }else if($years != 1 && $meses == 1){
-                            echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
-                        }else{
-                            echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
-                        }
+	                        if($years == 1 && $meses == 1){
+	                            echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
+	                        }else if($years == 1 && $meses != 1){
+	                            echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
+	                        }else if($years != 1 && $meses == 1){
+	                            echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
+	                        }else{
+	                            echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
+	                        }
 
-			echo "<td><a style=\"text-align:center;color:#000000\">".utf8_encode($info[$i]->nombre)."</a></td>";
-			echo"<td style=\"text-align:center;\">".$info[$i]->dir."</td>";
-			echo "<td style=\"text-align:center;\">".$info[$i]->ind."</td>";
-			echo "<td style=\"text-align:center;\">".$info[$i]->total."</td>";
-			echo "</tr>";
-			
-			
+				echo "<td><a style=\"text-align:center;color:#000000\">".utf8_encode($info[$i]->nombre)."</a></td>";
+				echo"<td style=\"text-align:center;\">".$info[$i]->dir."</td>";
+				echo "<td style=\"text-align:center;\">".$info[$i]->ind."</td>";
+				echo "<td style=\"text-align:center;\">".$info[$i]->total."</td>";
+				echo "</tr>";
+
+            } 
 		}
 		echo "</table>";
 		
