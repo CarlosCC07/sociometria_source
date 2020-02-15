@@ -85,7 +85,7 @@
 				$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
 				$total = count($info);
 			} else {
-				$sql="SELECT p.idTrabajador, p.tipoTrabajador, p.nombre, p.fechaIngreso, cp.ascendenciaDir,cp.ascendenciaInd,cp.afinidadDir, cp.afinidadInd, cp.popularidadDir,cp.popularidadInd,cp.totalDirecto,cp.totalIndirecto,cp.total,cp.totalAmp FROM contadorPersona cp, personas p WHERE p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY ".$orderBy." DESC ";
+				$sql="SELECT p.idTrabajador, p.extra, p.tipoTrabajador, p.nombre, p.fechaIngreso, cp.ascendenciaDir,cp.ascendenciaInd,cp.afinidadDir, cp.afinidadInd, cp.popularidadDir,cp.popularidadInd,cp.totalDirecto,cp.totalIndirecto,cp.total,cp.totalAmp FROM contadorPersona cp, personas p WHERE p.idTrabajador = cp.idTrabajador ".$plantString." ".$segmentString." ORDER BY ".$orderBy." DESC ";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
