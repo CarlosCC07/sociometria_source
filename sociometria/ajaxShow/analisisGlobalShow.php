@@ -202,7 +202,7 @@
 	                    echo $years."a-".$meses."m</td>";
 	                }
 
-	                if(is_null($bidir[$i])){
+	                if(is_null($bidr[$i])){
 	                	 echo "<td ><a onclick=\"whichInfo(".$info[$i]->idTrabajador.",'".utf8_encode($info[$i]->nombre)."')\" style=\"color:black;\">".utf8_encode($info[$i]->nombre)."</a></td>";
 	                } else {
 	                	 echo "<td ><a onclick=\"whichInfo(".$info[$i]->idTrabajador.",'".utf8_encode($info[$i]->nombre)."')\" style=\"color:black;\"><b>".utf8_encode($info[$i]->nombre)."</b></a></td>";

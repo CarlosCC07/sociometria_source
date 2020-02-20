@@ -179,7 +179,7 @@
                     echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
                 }
 
-                if(is_null($bidir[$i])){
+                if(is_null($bidr[$i])){
                 	echo "<td><a style=\"text-align:center;color:#000000\">".utf8_encode($info[$i]->nombre)."</a></td>";
                 } else {
                 	echo "<td><a style=\"text-align:center;color:#000000\"><b>".utf8_encode($info[$i]->nombre)."</b></a></td>";
