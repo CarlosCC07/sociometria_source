@@ -143,6 +143,11 @@
 		echo "<th>Ind.</th>";
 		echo "</tr>";
 		for($i=0;$i<$total;$i++){
+
+			$sql3="SELECT e.idTrabajador FROM encuestaPersona e WHERE e.idAscendencia1 = ".$info[$i]->idTrabajador." OR e.idAscendencia2 = ".$info[$i]->idTrabajador." OR e.idAscendencia3 = ".$info[$i]->idTrabajador." OR e.idAfinidad1 = ".$info[$i]->idTrabajador." OR e.idAfinidad2 = ".$info[$i]->idTrabajador." OR e.idAfinidad3 = ".$info[$i]->idTrabajador." OR e.idPopularidad1 = ".$info[$i]->idTrabajador." OR e.idPopularidad2 = ".$info[$i]->idTrabajador." OR e.idPopularidad3 = ".$info[$i]->idTrabajador."";
+			$stmt = $dbh->prepare($sql3);
+			$stmt->execute();
+			$bidr = $stmt->fetchAll(PDO::FETCH_OBJ); 
 		
             $d1 = new DateTime($info[$i]->fechaIngreso);
             $d2 = new DateTime(date('Y-m-d'));
@@ -153,6 +158,7 @@
             $rank = $i+1;
 
             if($extra == 0 || $extra == $info[$i]->extra){
+
             	echo"<tr class=\"per".$info[$i]->extra." \" onclick=\"analisisPerson(".$info[$i]->idTrabajador.",".$typeVar.",".$plant.")\" >";
 
 				if($info[$i]->tipoTrabajador == 0) {
@@ -163,17 +169,22 @@
 
 				echo "<td style=\"text-align:right;\">".$info[$i]->idTrabajador."</td>";
 
-	                        if($years == 1 && $meses == 1){
-	                            echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
-	                        }else if($years == 1 && $meses != 1){
-	                            echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
-	                        }else if($years != 1 && $meses == 1){
-	                            echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
-	                        }else{
-	                            echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
-	                        }
+                if($years == 1 && $meses == 1){
+                    echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
+                }else if($years == 1 && $meses != 1){
+                    echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
+                }else if($years != 1 && $meses == 1){
+                    echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
+                }else{
+                    echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
+                }
 
-				echo "<td><a style=\"text-align:center;color:#000000\">".utf8_encode($info[$i]->nombre)."</a></td>";
+                if(is_null($bidir[$i])){
+                	echo "<td><a style=\"text-align:center;color:#000000\">".utf8_encode($info[$i]->nombre)."</a></td>";
+                } else {
+                	echo "<td><a style=\"text-align:center;color:#000000\"><b>".utf8_encode($info[$i]->nombre)."</b></a></td>";
+                }
+
 				echo"<td style=\"text-align:center;\">".$info[$i]->dir."</td>";
 				echo "<td style=\"text-align:center;\">".$info[$i]->ind."</td>";
 				echo "<td style=\"text-align:center;\">".$info[$i]->total."</td>";

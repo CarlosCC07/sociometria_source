@@ -92,7 +92,7 @@
 				$total = count($info);
 			}
 			
-			$class = "";
+			$class = "";		
 			
 			echo "<div class=\"row\">";
 			echo "<div align=\"left\" id=\"ad\" class=\"span4\">";
@@ -152,6 +152,11 @@
 			}
 			
 			for($i=0;$i<$total;$i++){
+
+				$sql3="SELECT e.idTrabajador FROM encuestaPersona e WHERE e.idAscendencia1 = ".$info[$i]->idTrabajador." OR e.idAscendencia2 = ".$info[$i]->idTrabajador." OR e.idAscendencia3 = ".$info[$i]->idTrabajador." OR e.idAfinidad1 = ".$info[$i]->idTrabajador." OR e.idAfinidad2 = ".$info[$i]->idTrabajador." OR e.idAfinidad3 = ".$info[$i]->idTrabajador." OR e.idPopularidad1 = ".$info[$i]->idTrabajador." OR e.idPopularidad2 = ".$info[$i]->idTrabajador." OR e.idPopularidad3 = ".$info[$i]->idTrabajador."";
+				$stmt = $dbh->prepare($sql3);
+				$stmt->execute();
+				$bidr = $stmt->fetchAll(PDO::FETCH_OBJ); 	
 				
 				$d1 = new DateTime($info[$i]->fechaIngreso);
 				$d2 = new DateTime(date('Y-m-d'));
@@ -197,7 +202,12 @@
 	                    echo $years."a-".$meses."m</td>";
 	                }
 
-	                echo "<td ><a onclick=\"whichInfo(".$info[$i]->idTrabajador.",'".utf8_encode($info[$i]->nombre)."')\" style=\"color:black;\">".utf8_encode($info[$i]->nombre)."</a></td>";
+	                if(is_null($bidir[$i])){
+	                	 echo "<td ><a onclick=\"whichInfo(".$info[$i]->idTrabajador.",'".utf8_encode($info[$i]->nombre)."')\" style=\"color:black;\">".utf8_encode($info[$i]->nombre)."</a></td>";
+	                } else {
+	                	 echo "<td ><a onclick=\"whichInfo(".$info[$i]->idTrabajador.",'".utf8_encode($info[$i]->nombre)."')\" style=\"color:black;\"><b>".utf8_encode($info[$i]->nombre)."</b></a></td>";
+	                }
+
 					echo "<td style=\"text-align:center;\">".$info[$i]->ascendenciaDir."</td><td style=\"text-align:center;\">".$info[$i]->ascendenciaInd."</td>";
 					echo "<td style=\"text-align:center;\">".$info[$i]->afinidadDir."</td><td style=\"text-align:center;\">".$info[$i]->afinidadInd."</td>";
 					echo "<td style=\"text-align:center;\">".$info[$i]->popularidadDir."</td><td style=\"text-align:center;\">".$info[$i]->popularidadInd."</td>";
