@@ -79,13 +79,13 @@
 			}
 
 			if($extra == 0){
-				$sql="SELECT p.idTrabajador, p.extra, p.tipoTrabajador, p.nombre, p.fechaIngreso, cp.ascendenciaDir,cp.ascendenciaInd,cp.afinidadDir, cp.afinidadInd, cp.popularidadDir,cp.popularidadInd,cp.totalDirecto,cp.totalIndirecto,cp.total,cp.totalAmp FROM contadorPersona cp, personas p WHERE p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY ".$orderBy." DESC ".$limit.""; //LIMIT 0 , 10
+				$sql="SELECT p.idTrabajador, p.extra, p.tipoTrabajador, p.nombre, p.fechaIngreso, p.bidr, cp.ascendenciaDir,cp.ascendenciaInd,cp.afinidadDir, cp.afinidadInd, cp.popularidadDir,cp.popularidadInd,cp.totalDirecto,cp.totalIndirecto,cp.total,cp.totalAmp FROM contadorPersona cp, personas p WHERE p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY ".$orderBy." DESC ".$limit.""; //LIMIT 0 , 10
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
 				$total = count($info);
 			} else {
-				$sql="SELECT p.idTrabajador, p.extra, p.tipoTrabajador, p.nombre, p.fechaIngreso, cp.ascendenciaDir,cp.ascendenciaInd,cp.afinidadDir, cp.afinidadInd, cp.popularidadDir,cp.popularidadInd,cp.totalDirecto,cp.totalIndirecto,cp.total,cp.totalAmp FROM contadorPersona cp, personas p WHERE p.idTrabajador = cp.idTrabajador ".$plantString." ".$segmentString." ORDER BY ".$orderBy." DESC ";
+				$sql="SELECT p.idTrabajador, p.extra, p.tipoTrabajador, p.nombre, p.fechaIngreso, p.bidr, cp.ascendenciaDir,cp.ascendenciaInd,cp.afinidadDir, cp.afinidadInd, cp.popularidadDir,cp.popularidadInd,cp.totalDirecto,cp.totalIndirecto,cp.total,cp.totalAmp FROM contadorPersona cp, personas p WHERE p.idTrabajador = cp.idTrabajador ".$plantString." ".$segmentString." ORDER BY ".$orderBy." DESC ";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
@@ -152,11 +152,6 @@
 			}
 			
 			for($i=0;$i<$total;$i++){
-
-				$sql3="SELECT e.idTrabajador FROM encuestaPersona e WHERE e.idAscendencia1 = ".$info[$i]->idTrabajador." OR e.idAscendencia2 = ".$info[$i]->idTrabajador." OR e.idAscendencia3 = ".$info[$i]->idTrabajador." OR e.idAfinidad1 = ".$info[$i]->idTrabajador." OR e.idAfinidad2 = ".$info[$i]->idTrabajador." OR e.idAfinidad3 = ".$info[$i]->idTrabajador." OR e.idPopularidad1 = ".$info[$i]->idTrabajador." OR e.idPopularidad2 = ".$info[$i]->idTrabajador." OR e.idPopularidad3 = ".$info[$i]->idTrabajador."";
-				$stmt = $dbh->prepare($sql3);
-				$stmt->execute();
-				$bidr = $stmt->fetchAll(PDO::FETCH_OBJ); 	
 				
 				$d1 = new DateTime($info[$i]->fechaIngreso);
 				$d2 = new DateTime(date('Y-m-d'));
@@ -202,7 +197,7 @@
 	                    echo $years."a-".$meses."m</td>";
 	                }
 
-	                if(is_null($bidr[$i])){
+	                if($info[$i]->bidr == 0){
 	                	 echo "<td ><a onclick=\"whichInfo(".$info[$i]->idTrabajador.",'".utf8_encode($info[$i]->nombre)."')\" style=\"color:black;\">".utf8_encode($info[$i]->nombre)."</a></td>";
 	                } else {
 	                	 echo "<td ><a onclick=\"whichInfo(".$info[$i]->idTrabajador.",'".utf8_encode($info[$i]->nombre)."')\" style=\"color:black;\"><b>".utf8_encode($info[$i]->nombre)."</b></a></td>";

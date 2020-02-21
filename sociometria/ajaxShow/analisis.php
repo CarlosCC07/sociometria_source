@@ -80,13 +80,13 @@
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		if($extra == 0){
-			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY cp.".$orderBy." DESC ".$limit."";
+			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, p.bidr, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY cp.".$orderBy." DESC ".$limit."";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
 			$total = count($info);
 		} else {
-			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$segmentString." ORDER BY cp.".$orderBy." DESC ";
+			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, p.bidr, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$segmentString." ORDER BY cp.".$orderBy." DESC ";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
@@ -179,7 +179,7 @@
                     echo "<td style=\"text-align:center;\">".$years."a-".$meses."m</td>";
                 }
 
-                if(is_null($bidr[$i])){
+                if($info[$i]->bidr == 0){
                 	echo "<td><a style=\"text-align:center;color:#000000\">".utf8_encode($info[$i]->nombre)."</a></td>";
                 } else {
                 	echo "<td><a style=\"text-align:center;color:#000000\"><b>".utf8_encode($info[$i]->nombre)."</b></a></td>";
