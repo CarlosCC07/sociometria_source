@@ -133,6 +133,7 @@
 			case 1:$sql="SELECT p.idTrabajador,p.nombre FROM personas p,encuestaPersona ep WHERE ep.idTrabajador = p.idTrabajador AND ep.planta=".$plant." AND ".$chain;break;
 			case 2:$sql="SELECT p.idTrabajador,p.nombre FROM personas p,encuestaPersona ep WHERE p.departamento LIKE '%$department%' AND ep.idTrabajador = p.idTrabajador AND ep.planta=".$plant." AND ".$chain;break;
 			case 3:$sql="SELECT p.idTrabajador,p.nombre FROM personas p WHERE p.departamento LIKE '%$department%' AND ".$chain;break;
+			default:$sql="SELECT p.idTrabajador,p.nombre FROM personas p WHERE p.departamento LIKE '%$department%' AND ".$chain;break;
 		}
 				
 		try {
@@ -156,7 +157,24 @@
 						case 0:return 0 + exist($chain,$department,1,$filter1,$plant);break;
 						case 1:return 0 + exist($chain,$department,2,$filter1,$plant);break;
 						case 2:return 0 + exist($chain,$department,3,$filter1,$plant);break;
-						case 3:return 0;break;
+						case 3:return 0 + exist($chain,$department,4,$filter1,$plant);break;
+						case 4:return 0 + exist($chain,$department,5,$filter1,$plant);break;
+						case 5:return 0 + exist($chain,$department,6,$filter1,$plant);break;
+						case 6:return 0 + exist($chain,$department,7,$filter1,$plant);break;
+						case 7:return 0 + exist($chain,$department,8,$filter1,$plant);break;
+						case 8:return 0 + exist($chain,$department,9,$filter1,$plant);break;
+						case 9:return 0 + exist($chain,$department,10,$filter1,$plant);break;
+						case 10:return 0 + exist($chain,$department,11,$filter1,$plant);break;
+						case 11:return 0 + exist($chain,$department,12,$filter1,$plant);break;
+						case 12:return 0 + exist($chain,$department,13,$filter1,$plant);break;
+						case 13:return 0 + exist($chain,$department,14,$filter1,$plant);break;
+						case 14:return 0 + exist($chain,$department,15,$filter1,$plant);break;
+						case 15:return 0 + exist($chain,$department,16,$filter1,$plant);break;
+						case 16:return 0 + exist($chain,$department,17,$filter1,$plant);break;
+						case 17:return 0 + exist($chain,$department,18,$filter1,$plant);break;
+						case 18:return 0 + exist($chain,$department,19,$filter1,$plant);break;
+						case 19:return 0 + exist($chain,$department,20,$filter1,$plant);break;
+						case 20:return 0;break;
 					}
 				}
 			}
