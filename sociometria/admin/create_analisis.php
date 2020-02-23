@@ -165,6 +165,8 @@ function createDatabase($dbName,$year,$plants,$id,$company,$idAnalisis,$extra){
           `tipoTrabajador` int(1) NOT NULL,
           `extra` int(1) NOT NULL,
           `planta` int(1) NOT NULL,
+          `puesto` varchar(255) DEFAULT 'N/A',
+          `bidr` int(1) DEFAULT '0',
            PRIMARY KEY (`idTrabajador`)
         ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
