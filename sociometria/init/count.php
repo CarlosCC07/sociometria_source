@@ -16,7 +16,7 @@
 
 	function calculateInd($id,$cont,$level,$type){
 		if($level > 7){
-			return $cont;
+			return;
 		} elseif($level == 1){
 			$cont = 0;
 		}
