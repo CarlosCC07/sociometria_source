@@ -226,6 +226,7 @@
 					$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
 					$totalIndAmp = $totalIndAmp + count($idsInd);
 				}
+				$w++;
 			}
 
 			$w = 0;
