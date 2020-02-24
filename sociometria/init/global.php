@@ -24,29 +24,23 @@
 			
 			$totalDir = count($idsDir); //Total de directos total
 
-			$limit = 20;
-			$w = 0;
 							
 			//************** Saco los que votaron en ascendencia, luego de esos busco los de as1 sin repetir
-
-			while($w < $limit){
-				$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idAscendencia1 = ".$idsWorker[$i]->idTrabajador;
+			$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idAscendencia1 = ".$idsWorker[$i]->idTrabajador;
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
+			$totalDirAux = count($idsDir);
+			
+			for($j=0;$j<$totalDirAux;$j++){
+				$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAscendencia1 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
-				$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$totalDirAux = count($idsDir);
-				
-				for($j=0;$j<$totalDirAux;$j++){
-					$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAscendencia1 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
-					$stmt = $dbh->prepare($sql);
-					$stmt->execute();
-					$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
-					$auxIndCalc += count($idsInd);
-					$totalInd = $totalInd + count($idsInd);
-					$totalIndAmp = $totalIndAmp + count($idsInd);
-				
-				}
-				$w++;
+				$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
+				$auxIndCalc += count($idsInd);
+				$totalInd = $totalInd + count($idsInd);
+				$totalIndAmp = $totalIndAmp + count($idsInd);
+			
 			}
 
 			//Guardo el total individual de ascendencia
@@ -65,64 +59,55 @@
 			//****
 
 			//**
-			$w = 0;
-			while($w < $limit){
-				$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idAscendencia2 = ".$idsWorker[$i]->idTrabajador;
+
+			$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idAscendencia2 = ".$idsWorker[$i]->idTrabajador;
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
+			$totalDirAux = count($idsDir);
+			
+			for($j=0;$j<$totalDirAux;$j++){
+				$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAscendencia2 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
-				$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$totalDirAux = count($idsDir);
-				
-				for($j=0;$j<$totalDirAux;$j++){
-					$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAscendencia2 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
-					$stmt = $dbh->prepare($sql);
-					$stmt->execute();
-					$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
-					$totalIndAmp = $totalIndAmp + count($idsInd);
-				
-				}
-				$w++;
+				$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
+				$totalIndAmp = $totalIndAmp + count($idsInd);
+			
 			}
 
-			$w = 0;
-			while($w < $limit){
-				$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idAscendencia3 = ".$idsWorker[$i]->idTrabajador;
+			$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idAscendencia3 = ".$idsWorker[$i]->idTrabajador;
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
+			$totalDirAux = count($idsDir);
+			
+			for($j=0;$j<$totalDirAux;$j++){
+				$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAscendencia3 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
-				$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$totalDirAux = count($idsDir);
-				
-				for($j=0;$j<$totalDirAux;$j++){
-					$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAscendencia3 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
-					$stmt = $dbh->prepare($sql);
-					$stmt->execute();
-					$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
-					$totalIndAmp = $totalIndAmp + count($idsInd);
-				
-				}
-				$w++;
+				$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
+				$totalIndAmp = $totalIndAmp + count($idsInd);
+			
 			}
 
-			$w = 0;
+
+			
 			//************** Saco los que votaron en afinidad, luego de esos busco los de af1 sin repetir
-			while($w < $limit){
-				$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idAfinidad1 = ".$idsWorker[$i]->idTrabajador;
+			$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idAfinidad1 = ".$idsWorker[$i]->idTrabajador;
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
+			$totalDirAux = count($idsDir);
+			
+			for($j=0;$j<$totalDirAux;$j++){
+				$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAfinidad1 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
-				$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$totalDirAux = count($idsDir);
-				
-				for($j=0;$j<$totalDirAux;$j++){
-					$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAfinidad1 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
-					$stmt = $dbh->prepare($sql);
-					$stmt->execute();
-					$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
-					$auxIndCalc += count($idsInd);
-					$totalInd = $totalInd + count($idsInd);
-					$totalIndAmp = $totalIndAmp + count($idsInd);
-				
-				}
-				$w++;
+				$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
+				$auxIndCalc += count($idsInd);
+				$totalInd = $totalInd + count($idsInd);
+				$totalIndAmp = $totalIndAmp + count($idsInd);
+			
 			}
 
 			//Guardo el total individual de afinidad
@@ -139,63 +124,52 @@
 			$auxIndCalc = 0;
 			//****
 
-			$w = 0;
-			while($w < $limit){
-				$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idAfinidad2 = ".$idsWorker[$i]->idTrabajador;
+			$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idAfinidad2 = ".$idsWorker[$i]->idTrabajador;
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
+			$totalDirAux = count($idsDir);
+			
+			for($j=0;$j<$totalDirAux;$j++){
+				$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAfinidad2 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
-				$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$totalDirAux = count($idsDir);
-				
-				for($j=0;$j<$totalDirAux;$j++){
-					$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAfinidad2 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
-					$stmt = $dbh->prepare($sql);
-					$stmt->execute();
-					$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
-					$totalIndAmp = $totalIndAmp + count($idsInd);
-				
-				}
-				$w++;
+				$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
+				$totalIndAmp = $totalIndAmp + count($idsInd);
+			
 			}
 
-			$w = 0;
-			while($w < $limit){
-				$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idAfinidad3 = ".$idsWorker[$i]->idTrabajador;
+			$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idAfinidad3 = ".$idsWorker[$i]->idTrabajador;
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
+			$totalDirAux = count($idsDir);
+			
+			for($j=0;$j<$totalDirAux;$j++){
+				$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAfinidad3 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
-				$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$totalDirAux = count($idsDir);
-				
-				for($j=0;$j<$totalDirAux;$j++){
-					$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAfinidad3 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
-					$stmt = $dbh->prepare($sql);
-					$stmt->execute();
-					$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
-					$totalIndAmp = $totalIndAmp + count($idsInd);
-				
-				}
-				$w++;
+				$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
+				$totalIndAmp = $totalIndAmp + count($idsInd);
+			
 			}
-		
-			$w = 0;
+			
+			
 			//**************** Saco los que votaron en popularidad, luego de esos busco los de pop1 sin repetir
-			while($w < $limit){
-				$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idPopularidad1 = ".$idsWorker[$i]->idTrabajador;
+			$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idPopularidad1 = ".$idsWorker[$i]->idTrabajador;
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
+			$totalDirAux = count($idsDir);
+			
+			for($j=0;$j<$totalDirAux;$j++){
+				$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idPopularidad1 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
-				$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$totalDirAux = count($idsDir);
-				
-				for($j=0;$j<$totalDirAux;$j++){
-					$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idPopularidad1 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
-					$stmt = $dbh->prepare($sql);
-					$stmt->execute();
-					$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
-					$auxIndCalc += count($idsInd);
-					$totalInd = $totalInd + count($idsInd);
-					$totalIndAmp = $totalIndAmp + count($idsInd);
-				}
-				$w++;
+				$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
+				$auxIndCalc += count($idsInd);
+				$totalInd = $totalInd + count($idsInd);
+				$totalIndAmp = $totalIndAmp + count($idsInd);
 			}
 
 			//Guardo el total individual de popularidad
@@ -211,40 +185,32 @@
 			//-----
 
 			//****
-			$w = 0;
-			while($w < $limit){
-				$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idPopularidad2 = ".$idsWorker[$i]->idTrabajador;
+			$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idPopularidad2 = ".$idsWorker[$i]->idTrabajador;
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
+			$totalDirAux = count($idsDir);
+			
+			for($j=0;$j<$totalDirAux;$j++){
+				$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idPopularidad2 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
-				$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$totalDirAux = count($idsDir);
-				
-				for($j=0;$j<$totalDirAux;$j++){
-					$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idPopularidad2 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
-					$stmt = $dbh->prepare($sql);
-					$stmt->execute();
-					$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
-					$totalIndAmp = $totalIndAmp + count($idsInd);
-				}
-				$w++;
+				$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
+				$totalIndAmp = $totalIndAmp + count($idsInd);
 			}
 
-			$w = 0;
-			while($w < $limit){
-				$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idPopularidad3 = ".$idsWorker[$i]->idTrabajador;
+			$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idPopularidad3 = ".$idsWorker[$i]->idTrabajador;
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
+			$totalDirAux = count($idsDir);
+			
+			for($j=0;$j<$totalDirAux;$j++){
+				$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idPopularidad3 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
-				$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$totalDirAux = count($idsDir);
-				
-				for($j=0;$j<$totalDirAux;$j++){
-					$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idPopularidad3 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
-					$stmt = $dbh->prepare($sql);
-					$stmt->execute();
-					$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
-					$totalIndAmp = $totalIndAmp + count($idsInd);
-				}
-				$w++;
+				$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
+				$totalIndAmp = $totalIndAmp + count($idsInd);
 			}
 			
 			$totalGlobal = $totalDir + $totalInd;

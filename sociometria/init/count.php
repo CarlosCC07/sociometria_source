@@ -15,6 +15,9 @@
 	global $dbhost;
 
 	function calculateInd($id,$cont,$level,$type){
+		$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
+		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		
 		if($level > 7){
 			return;
 		} elseif($level == 1){
