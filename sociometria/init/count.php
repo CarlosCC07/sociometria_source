@@ -14,10 +14,7 @@
 	global $dbname;
 	global $dbhost;
 
-	function calculateInd($id,$cont,$level,$type){
-		$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
-		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		
+	function calculateInd($id,$cont,$level,$type,$dbh){
 		if($level > 7){
 			return;
 		} elseif($level == 1){
@@ -239,15 +236,15 @@
 			// INDIRECTOS
 			//************************* ASCENDENCIA
 
-			calculateInd($id,0,1,1);
+			calculateInd($id,0,1,1,$dbh);
 			
 			//************************* AFINIDAD
 
-			calculateInd($id,0,1,2);
+			calculateInd($id,0,1,2,$dbh);
 			
 			//********************* POPULARIDAD
 			
-			calculateInd($id,0,1,3);
+			calculateInd($id,0,1,3,$dbh);
 		}
 		
 		$dbh = null;
