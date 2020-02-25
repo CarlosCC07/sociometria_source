@@ -31,7 +31,7 @@
 
 			for($j = 0; $j <$totalInd;$j++){
 				$id2 = $idInd[$j]->idTrabajador;
-				calculateInd($id2,$cont,$level+1,$type);
+				calculateInd($id2,$cont,$level+1,$type,$dbh);
 				$sql="SELECT contAscendencia1 FROM contadorPersona WHERE idTrabajador = '$id2'"; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
@@ -64,7 +64,7 @@
 
 			for($j = 0; $j <$totalInd;$j++){
 				$id2 = $idInd[$j]->idTrabajador;
-				calculateInd($id2,$cont,$level+1,$type);
+				calculateInd($id2,$cont,$level+1,$type,$dbh);
 				$sql="SELECT contAfinidad1 FROM contadorPersona WHERE idTrabajador = '$id2'"; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
@@ -98,7 +98,7 @@
 
 			for($j = 0; $j <$totalInd;$j++){
 				$id2 = $idInd[$j]->idTrabajador;
-				calculateInd($id2,$cont,$level+1,$type);
+				calculateInd($id2,$cont,$level+1,$type,$dbh);
 				$sql="SELECT contPopularidad1 FROM contadorPersona WHERE idTrabajador = '$id2'"; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
