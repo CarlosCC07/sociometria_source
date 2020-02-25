@@ -1,6 +1,69 @@
 <?php
 	require "../bd/config.php"; //Incluyo la base de datos
 	$starttime = microtime(true);
+	set_time_limit(800);
+
+	function calculateInd($id,$dbh,$type,$level){
+
+		if($level > 10){
+			return;
+		}
+
+		if($type == 1){
+			$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idAscendencia1 = ".$id;
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
+			$totalDirAux = count($idsDir);
+
+			for($j=0;$j<$totalDirAux;$j++){
+				$temp = calculateInd($idsDir[$j]->idTrabajador,$dbh,1,$level+1);
+				$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAscendencia1 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+				$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
+				$totalInd = $totalInd + count($idsInd) + $temp;
+			}
+
+			return $totalInd;
+
+		}elseif ($type == 2) {
+			$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idAfinidad1 = ".$id;
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
+			$totalDirAux = count($idsDir);
+
+			for($j=0;$j<$totalDirAux;$j++){
+				$temp = calculateInd($idsDir[$j]->idTrabajador,$dbh,2,$level+1);
+				$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAfinidad1 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+				$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
+				$totalInd = $totalInd + count($idsInd) + $temp;
+			}
+
+			return $totalInd;
+
+		}elseif ($type == 3) {
+			$sql = "SELECT idTrabajador FROM encuestaPersona ep WHERE idPopularidad1 = ".$id;
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idsDir = $stmt->fetchAll(PDO::FETCH_OBJ);
+			$totalDirAux = count($idsDir);
+			
+			for($j=0;$j<$totalDirAux;$j++){
+				$temp = calculateInd($idsDir[$j]->idTrabajador,$dbh,3,$level+1);
+				$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idPopularidad1 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+				$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
+				$totalInd = $totalInd + count($idsInd) + $temp;
+			}
+
+			return $totalInd;
+		}
+	}
 		
 	try {
 		$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
@@ -33,14 +96,14 @@
 			$totalDirAux = count($idsDir);
 			
 			for($j=0;$j<$totalDirAux;$j++){
+				$temp = calculateInd($idsDir[$j]->idTrabajador,$dbh,1,1);
 				$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAscendencia1 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
 				$auxIndCalc += count($idsInd);
-				$totalInd = $totalInd + count($idsInd);
+				$totalInd = $totalInd + count($idsInd) + $temp;
 				$totalIndAmp = $totalIndAmp + count($idsInd);
-			
 			}
 
 			//Guardo el total individual de ascendencia
@@ -100,12 +163,13 @@
 			$totalDirAux = count($idsDir);
 			
 			for($j=0;$j<$totalDirAux;$j++){
+				$temp = calculateInd($idsDir[$j]->idTrabajador,$dbh,2,1);
 				$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAfinidad1 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
 				$auxIndCalc += count($idsInd);
-				$totalInd = $totalInd + count($idsInd);
+				$totalInd = $totalInd + count($idsInd) + $temp;
 				$totalIndAmp = $totalIndAmp + count($idsInd);
 			
 			}
@@ -163,12 +227,13 @@
 			$totalDirAux = count($idsDir);
 			
 			for($j=0;$j<$totalDirAux;$j++){
+				$temp = calculateInd($idsDir[$j]->idTrabajador,$dbh,3,1);
 				$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idPopularidad1 = ".$idsDir[$j]->idTrabajador." GROUP BY idTrabajador";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
 				$auxIndCalc += count($idsInd);
-				$totalInd = $totalInd + count($idsInd);
+				$totalInd = $totalInd + count($idsInd) + $temp;
 				$totalIndAmp = $totalIndAmp + count($idsInd);
 			}
 
