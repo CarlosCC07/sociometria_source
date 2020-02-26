@@ -217,8 +217,10 @@
 			$totalGlobalAmp = $totalDir + $totalIndAmp;
 			
 			
-			//Guado el total global
-			$sql = "UPDATE contadorPersona SET total = ".$totalGlobal." WHERE idTrabajador = ".$idsWorker[$i]->idTrabajador;
+			//Guardo el total global
+			//Prueba C: $sql = "UPDATE contadorPersona SET total = ".$totalGlobal." WHERE idTrabajador = ".$idsWorker[$i]->idTrabajador;
+			//Prueba Z: $sql = "UPDATE contadorPersona SET total = total + ".$totalGlobal." WHERE idTrabajador = ".$idsWorker[$i]->idTrabajador;
+			$sql = "UPDATE contadorPersona SET total = total + ".$totalGlobal." WHERE idTrabajador = ".$idsWorker[$i]->idTrabajador;
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 
