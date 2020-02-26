@@ -54,7 +54,7 @@
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$cont = $value[0] -> contAscendencia1;
+				$cont = $value[0] -> contAfinidad1;
 				$cont = $cont + $temp;
 			}
 		}elseif ($type == 3) {
@@ -72,7 +72,7 @@
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$cont = $value[0] -> contAscendencia1;
+				$cont = $value[0] -> contPopularidad1;
 				$cont = $cont + $temp;
 			}
 		}
