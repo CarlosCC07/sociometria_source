@@ -17,8 +17,10 @@
 
 	function calculateInd($id,$dbh,$type,$level){
 
+		$cont = 0;
+
 		if($level > 20) {
-			return 0;
+			return $cont;
 		}
 
 		if($type == 1){
