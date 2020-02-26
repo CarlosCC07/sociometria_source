@@ -4,6 +4,7 @@
 	set_time_limit(800);
 
 	function calculateInd($id,$dbh,$type,$level){
+		$totalInd = 0;
 
 		if($level > 10){
 			return;
