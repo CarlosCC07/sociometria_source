@@ -39,6 +39,9 @@
 				$cont = $value[0] -> contAscendencia1;
 				$cont = $cont + $temp;
 			}
+			$sql3 = "UPDATE contadorPersona SET total = total + '$total' WHERE idTrabajador = '$id'";
+			$stmt = $dbh->prepare($sql3);
+			$stmt->execute();
 		}elseif ($type == 2) {
 			$sql2 = "SELECT idTrabajador FROM encuestaPersona WHERE idAfinidad1 = '$id'";
 			$stmt = $dbh->prepare($sql2);
@@ -57,6 +60,9 @@
 				$cont = $value[0] -> contAfinidad1;
 				$cont = $cont + $temp;
 			}
+			$sql3 = "UPDATE contadorPersona SET total = total + '$total' WHERE idTrabajador = '$id'";
+			$stmt = $dbh->prepare($sql3);
+			$stmt->execute();
 		}elseif ($type == 3) {
 			$sql2 = "SELECT idTrabajador FROM encuestaPersona WHERE idPopularidad1 = '$id'";
 			$stmt = $dbh->prepare($sql2);
@@ -75,6 +81,9 @@
 				$cont = $value[0] -> contPopularidad1;
 				$cont = $cont + $temp;
 			}
+			$sql3 = "UPDATE contadorPersona SET total = total + '$total' WHERE idTrabajador = '$id'";
+			$stmt = $dbh->prepare($sql3);
+			$stmt->execute();
 		}
 
 		return $cont;
