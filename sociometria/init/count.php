@@ -358,9 +358,9 @@
 		//********************* IIX
 		for($i = 0;$i < $total; $i++){
 			$id = $ids[$i]->idTrabajador; // Tengo el id del que fue votado
-			calculateInd($id,$dbh,1,1);
-			calculateInd($id,$dbh,2,1);
-			calculateInd($id,$dbh,3,1);
+			$c1 = calculateInd($id,$dbh,1,1);
+			$c2 = calculateInd($id,$dbh,2,1);
+			$c3 = calculateInd($id,$dbh,3,1);
 		}
 		
 		$dbh = null;
