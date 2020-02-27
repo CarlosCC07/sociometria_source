@@ -34,7 +34,7 @@
 			$total = count($idsFirst);
 			for($i = 0; $i < $total; $i++){
 				$temp = calculateInd($idsFirst[$i]->idTrabajador,$dbh,1,$level+1);
-				$sql="SELECT contAscendencia1 FROM contadorPersona WHERE idTrabajador = '$idsFirst[$i]->idTrabajador'"; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
+				$sql="SELECT contAscendencia1 FROM contadorPersona WHERE idTrabajador = ".$idsFirst[$i]->idTrabajador.""; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -57,7 +57,7 @@
 			$total = count($idsFirst);
 			for($i = 0; $i < $total; $i++){
 				$temp = calculateInd($idsFirst[$i]->idTrabajador,$dbh,2,$level+1);
-				$sql="SELECT contAfinidad1 FROM contadorPersona WHERE idTrabajador = '$idsFirst[$i]->idTrabajador'"; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
+				$sql="SELECT contAfinidad1 FROM contadorPersona WHERE idTrabajador = ".$idsFirst[$i]->idTrabajador.""; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -80,7 +80,7 @@
 			$total = count($idsFirst);
 			for($i = 0; $i < $total; $i++){
 				$temp = calculateInd($idsFirst[$i]->idTrabajador,$dbh,3,$level+1);
-				$sql="SELECT contPopularidad1 FROM contadorPersona WHERE idTrabajador = '$idsFirst[$i]->idTrabajador'"; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
+				$sql="SELECT contPopularidad1 FROM contadorPersona WHERE idTrabajador = ".$idsFirst[$i]->idTrabajador.""; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
