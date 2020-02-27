@@ -5,10 +5,8 @@
 
 	function calculateInd($id,$dbh,$type,$level){
 
-		$cont = 0;
-
 		if($level > 20) {
-			return $cont;
+			return 0;
 		}
 
 		if($type == 1){
@@ -325,46 +323,46 @@
 			$id = $ids[$i]->idTrabajador; // Tengo el id del que fue votado
 			/************ ASCENDENCIA *************/
 			$cont = calculateInd($id,$dbh,1,1);
-			$sql = "UPDATE contadorPersona SET ascendenciaInd = ascendenciaInd + '$cont' WHERE idTrabajador = '$id'";
+			$sql = "UPDATE contadorPersona SET ascendenciaInd = ascendenciaInd + ".$cont." WHERE idTrabajador = ".$id."";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			
-			$sql = "UPDATE contadorPersona SET totalIndirecto = totalIndirecto + '$cont' WHERE idTrabajador = '$id'";
+			$sql = "UPDATE contadorPersona SET totalIndirecto = totalIndirecto + ".$cont." WHERE idTrabajador = ".$id."";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 
 			
-			$sql = "UPDATE contadorPersona SET ascendenciaIndAmp = ascendenciaIndAmp + '$cont' WHERE idTrabajador = '$id'";
+			$sql = "UPDATE contadorPersona SET ascendenciaIndAmp = ascendenciaIndAmp + ".$cont." WHERE idTrabajador = ".$id."";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 
 			/************ AFINIDAD *************/
 			$cont = calculateInd($id,$dbh,2,1);
-			$sql = "UPDATE contadorPersona SET afinidadInd = afinidadInd + '$cont' WHERE idTrabajador = '$id'";
+			$sql = "UPDATE contadorPersona SET afinidadInd = afinidadInd + ".$cont." WHERE idTrabajador = ".$id."";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			
-			$sql = "UPDATE contadorPersona SET totalIndirecto = totalIndirecto + '$cont' WHERE idTrabajador = '$id'";
+			$sql = "UPDATE contadorPersona SET totalIndirecto = totalIndirecto + ".$cont." WHERE idTrabajador = ".$id."";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 
 			
-			$sql = "UPDATE contadorPersona SET afinidadIndAmp = afinidadIndAmp + '$cont' WHERE idTrabajador = '$id'";
+			$sql = "UPDATE contadorPersona SET afinidadIndAmp = afinidadIndAmp + ".$cont." WHERE idTrabajador = ".$id."";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 
 			/************ POPULARIDAD *************/
 			$cont = calculateInd($id,$dbh,3,1);
-			$sql = "UPDATE contadorPersona SET popularidadInd = popularidadInd + '$cont' WHERE idTrabajador = '$id'";
+			$sql = "UPDATE contadorPersona SET popularidadInd = popularidadInd + ".$cont." WHERE idTrabajador = ".$id."";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			
-			$sql = "UPDATE contadorPersona SET totalIndirecto = totalIndirecto + '$cont' WHERE idTrabajador = '$id'";
+			$sql = "UPDATE contadorPersona SET totalIndirecto = totalIndirecto + ".$cont." WHERE idTrabajador = ".$id."";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 
 			
-			$sql = "UPDATE contadorPersona SET popularidadIndAmp = popularidadIndAmp + '$cont' WHERE idTrabajador = '$id'";
+			$sql = "UPDATE contadorPersona SET popularidadIndAmp = popularidadIndAmp + ".$cont." WHERE idTrabajador = ".$id."";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 		}
