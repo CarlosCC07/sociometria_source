@@ -17,10 +17,13 @@
 
 	function calculateInd($id,$dbh,$type,$level){
 
+		$arr[0] = 0;
+		$arr[1] = 0;
+
 		$cont = 0;
 
 		if($level > 20) {
-			return $cont;
+			return $arr;
 		}
 
 		if($type == 1){
@@ -29,7 +32,7 @@
 			$stmt->execute();
 			$idsFirst = $stmt->fetchAll(PDO::FETCH_OBJ);
 			if(is_null($idsFirst)){
-				return 0;
+				return $arr;
 			}
 			$total = count($idsFirst);
 			for($i = 0; $i < $total; $i++){
@@ -38,13 +41,27 @@
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$cont = $value[0]->contAscendencia1;
-				$cont = $cont + $temp;
+				$cont = $value[0]->contAscendencia1 + $temp;
 			}
+			$arr[0] = $cont;
+			$arr[1] = $total;
 			if($level == 1){
-				$sql3 = "UPDATE contadorPersona SET total = total + '$total' WHERE idTrabajador = '$id'";
+				$newcont = $arr[0];
+				$newtot = $arr[1];
+				$sql = "UPDATE contadorPersona SET ascendenciaInd = ascendenciaInd + '$newcont' WHERE idTrabajador = '$id'";
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+				
+				$sql = "UPDATE contadorPersona SET totalIndirecto = totalIndirecto + '$newcont' WHERE idTrabajador = '$id'";
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+				
+				$sql3 = "UPDATE contadorPersona SET total = total + '$newtot' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql3);
 				$stmt->execute();
+				
+			} else {
+				return $arr;
 			}
 		}elseif ($type == 2) {
 			$sql2 = "SELECT idTrabajador FROM encuestaPersona WHERE idAfinidad1 = '$id'";
@@ -52,7 +69,7 @@
 			$stmt->execute();
 			$idsFirst = $stmt->fetchAll(PDO::FETCH_OBJ);
 			if(is_null($idsFirst)){
-				return 0;
+				return $arr;
 			}
 			$total = count($idsFirst);
 			for($i = 0; $i < $total; $i++){
@@ -64,10 +81,25 @@
 				$cont = $value[0]->contAfinidad1;
 				$cont = $cont + $temp;
 			}
+			$arr[0] = $cont;
+			$arr[1] = $total;
 			if($level == 1){
-				$sql3 = "UPDATE contadorPersona SET total = total + '$total' WHERE idTrabajador = '$id'";
+				$newcont = $arr[0];
+				$newtot = $arr[1];
+				$sql = "UPDATE contadorPersona SET afinidadInd = afinidadInd + '$newcont' WHERE idTrabajador = '$id'";
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+				
+				$sql = "UPDATE contadorPersona SET totalIndirecto = totalIndirecto + '$newcont' WHERE idTrabajador = '$id'";
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+				
+				$sql3 = "UPDATE contadorPersona SET total = total + '$newtot' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql3);
 				$stmt->execute();
+				
+			} else {
+				return $arr;
 			}
 		}elseif ($type == 3) {
 			$sql2 = "SELECT idTrabajador FROM encuestaPersona WHERE idPopularidad1 = '$id'";
@@ -75,7 +107,7 @@
 			$stmt->execute();
 			$idsFirst = $stmt->fetchAll(PDO::FETCH_OBJ);
 			if(is_null($idsFirst)){
-				return 0;
+				return $arr;
 			}
 			$total = count($idsFirst);
 			for($i = 0; $i < $total; $i++){
@@ -87,13 +119,27 @@
 				$cont = $value[0]->contPopularidad1;
 				$cont = $cont + $temp;
 			}
+			$arr[0] = $cont;
+			$arr[1] = $total;
 			if($level == 1){
-				$sql3 = "UPDATE contadorPersona SET total = total + '$total' WHERE idTrabajador = '$id'";
+				$newcont = $arr[0];
+				$newtot = $arr[1];
+				$sql = "UPDATE contadorPersona SET popularidadInd = popularidadInd + '$newcont' WHERE idTrabajador = '$id'";
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+				
+				$sql = "UPDATE contadorPersona SET totalIndirecto = totalIndirecto + '$newcont' WHERE idTrabajador = '$id'";
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+				
+				$sql3 = "UPDATE contadorPersona SET total = total + '$newtot' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql3);
 				$stmt->execute();
+				
+			} else {
+				return $arr;
 			}
 		}
-		return $cont;
 	}
 	
 	try {
@@ -184,8 +230,6 @@
 			
 			}
 			
-			
-		
 		}
 		
 	
@@ -217,8 +261,12 @@
 			for($j = 0; $j <$totalInd;$j++){
 				$id2 = $idInd[$j]->idTrabajador;
 
-				$cont = calculateInd($id2,$dbh,1,1);
-				echo "<script>console.log(".$id2." - ".$cont.")</script>";
+				$sql="SELECT contAscendencia1 FROM contadorPersona WHERE idTrabajador = '$id2'"; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
+				$cont = $value[0] -> contAscendencia1;
+
 				$sql = "UPDATE contadorPersona SET ascendenciaInd = ascendenciaInd + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
@@ -235,10 +283,6 @@
 				$sql = "UPDATE contadorPersona SET ascendenciaIndAmp = ascendenciaIndAmp + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
-
-
-			
-			
 			}
 			
 			//************************* AFINIDAD
@@ -253,7 +297,12 @@
 			for($j = 0; $j <$totalInd;$j++){
 				$id2 = $idInd[$j]->idTrabajador;
 
-				$cont = calculateInd($id2,$dbh,2,1);
+				$sql="SELECT contAfinidad1 FROM contadorPersona WHERE idTrabajador = '$id2'"; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
+				$cont = $value[0] -> contAfinidad1;
+
 				$sql = "UPDATE contadorPersona SET afinidadInd = afinidadInd + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
@@ -286,7 +335,7 @@
 			for($j = 0; $j <$totalInd;$j++){
 				$id2 = $idInd[$j]->idTrabajador;
 				
-				$cont = calculateInd($id2,$dbh,3,1);
+				
 				$sql = "UPDATE contadorPersona SET popularidadInd = popularidadInd + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
@@ -303,10 +352,15 @@
 				$sql = "UPDATE contadorPersona SET popularidadIndAmp = popularidadIndAmp + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
-			
 			}
-			
-		
+		}
+
+		//********************* IIX
+		for($i = 0;$i < $total; $i++){
+			$id = $ids[$i]->idTrabajador; // Tengo el id del que fue votado
+			calculateInd($id,$dbh,1,1);
+			calculateInd($id,$dbh,2,1);
+			calculateInd($id,$dbh,3,1);
 		}
 		
 		$dbh = null;
