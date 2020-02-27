@@ -1,7 +1,7 @@
 <?php
 
 	$starttime = microtime(true);
-	set_time_limit(800);
+	set_time_limit(0);
     require "../bd/config.php"; //Incluyo la base de datos
 	
 	/*
@@ -38,7 +38,7 @@
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$cont = $value[0] -> contAscendencia1;
+				$cont = $value[0]->contAscendencia1;
 				$cont = $cont + $temp;
 			}
 			$sql3 = "UPDATE contadorPersona SET total = total + '$total' WHERE idTrabajador = '$id'";
@@ -59,7 +59,7 @@
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$cont = $value[0] -> contAfinidad1;
+				$cont = $value[0]->contAfinidad1;
 				$cont = $cont + $temp;
 			}
 			$sql3 = "UPDATE contadorPersona SET total = total + '$total' WHERE idTrabajador = '$id'";
@@ -80,7 +80,7 @@
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$cont = $value[0] -> contPopularidad1;
+				$cont = $value[0]->contPopularidad1;
 				$cont = $cont + $temp;
 			}
 			$sql3 = "UPDATE contadorPersona SET total = total + '$total' WHERE idTrabajador = '$id'";
