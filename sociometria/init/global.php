@@ -12,7 +12,7 @@
 		}
 
 		if($type == 1){
-			$sql2 = "SELECT idTrabajador FROM encuestaPersona WHERE idAscendencia1 = '$id'";
+			$sql2 = "SELECT idTrabajador FROM encuestaPersona WHERE idAscendencia1 = ".$id."";
 			$stmt = $dbh->prepare($sql2);
 			$stmt->execute();
 			$idsFirst = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -30,12 +30,12 @@
 				$cont = $cont + $temp;
 			}
 			if($level == 1){
-				$sql3 = "UPDATE contadorPersona SET total = total + '$total' WHERE idTrabajador = '$id'";
+				$sql3 = "UPDATE contadorPersona SET total = total + ".$total." WHERE idTrabajador = ".$id."";
 				$stmt = $dbh->prepare($sql3);
 				$stmt->execute();
 			}
 		}elseif ($type == 2) {
-			$sql2 = "SELECT idTrabajador FROM encuestaPersona WHERE idAfinidad1 = '$id'";
+			$sql2 = "SELECT idTrabajador FROM encuestaPersona WHERE idAfinidad1 = ".$id."";
 			$stmt = $dbh->prepare($sql2);
 			$stmt->execute();
 			$idsFirst = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -53,12 +53,12 @@
 				$cont = $cont + $temp;
 			}
 			if($level == 1){
-				$sql3 = "UPDATE contadorPersona SET total = total + '$total' WHERE idTrabajador = '$id'";
+				$sql3 = "UPDATE contadorPersona SET total = total + ".$total." WHERE idTrabajador = ".$id."";
 				$stmt = $dbh->prepare($sql3);
 				$stmt->execute();
 			}
 		}elseif ($type == 3) {
-			$sql2 = "SELECT idTrabajador FROM encuestaPersona WHERE idPopularidad1 = '$id'";
+			$sql2 = "SELECT idTrabajador FROM encuestaPersona WHERE idPopularidad1 = ".$id."";
 			$stmt = $dbh->prepare($sql2);
 			$stmt->execute();
 			$idsFirst = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -76,7 +76,7 @@
 				$cont = $cont + $temp;
 			}
 			if($level == 1){
-				$sql3 = "UPDATE contadorPersona SET total = total + '$total' WHERE idTrabajador = '$id'";
+				$sql3 = "UPDATE contadorPersona SET total = total + ".$total." WHERE idTrabajador = ".$id."";
 				$stmt = $dbh->prepare($sql3);
 				$stmt->execute();
 			}
