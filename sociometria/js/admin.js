@@ -345,7 +345,7 @@ function global(idCompany,nameCompany){
 
 function extend(idCompany,nameCompany){
   $('div#result').html(""); 
-  $('div#result').html('<img src="img/loading.gif" /><br>Aplicando IIX');
+  $('div#result').html('<img src="img/loading.gif" /><br>Aplicando IIX...');
   $.ajax({
     data: null,
     url : 'init/extend.php',
