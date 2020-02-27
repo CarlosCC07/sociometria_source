@@ -338,6 +338,18 @@ function global(idCompany,nameCompany){
     data: null,
     url : 'init/global.php',
     success : function (data){
+      extend(idCompany,nameCompany);
+    }
+  });
+}
+
+function extend(idCompany,nameCompany){
+  $('div#result').html(""); 
+  $('div#result').html('<img src="img/loading.gif" /><br>Aplicando IIX');
+  $.ajax({
+    data: null,
+    url : 'init/extend.php',
+    success : function (data){
       $('div#result').html("");     
       $('<h3>Análisis finalizado</h3>').hide().appendTo('div#result').fadeIn();
        setTimeout(function() {
@@ -347,7 +359,7 @@ function global(idCompany,nameCompany){
         }, 2000);
       
     }
-  });
+  });   
 }
 
 function backup(){
