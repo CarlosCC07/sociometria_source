@@ -41,7 +41,7 @@
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$cont = $value[0]->contAscendencia1 + $temp;
+				$cont = $value[0]->contAscendencia1 + $temp[0];
 			}
 			$arr[0] = $cont;
 			$arr[1] = $total;
@@ -78,8 +78,7 @@
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$cont = $value[0]->contAfinidad1;
-				$cont = $cont + $temp;
+				$cont = $value[0]->contAfinidad1 + $temp[0];
 			}
 			$arr[0] = $cont;
 			$arr[1] = $total;
@@ -116,8 +115,7 @@
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
-				$cont = $value[0]->contPopularidad1;
-				$cont = $cont + $temp;
+				$cont = $value[0]->contPopularidad1 + $temp[0];
 			}
 			$arr[0] = $cont;
 			$arr[1] = $total;
@@ -358,9 +356,9 @@
 		//********************* IIX
 		for($i = 0;$i < $total; $i++){
 			$id = $ids[$i]->idTrabajador; // Tengo el id del que fue votado
-			$c1 = calculateInd($id,$dbh,1,1);
-			$c2 = calculateInd($id,$dbh,2,1);
-			$c3 = calculateInd($id,$dbh,3,1);
+			calculateInd($id,$dbh,1,1);
+			calculateInd($id,$dbh,2,1);
+			calculateInd($id,$dbh,3,1);
 		}
 		
 		$dbh = null;
