@@ -1,6 +1,7 @@
 <?php
 	require "../bd/config.php"; //Incluyo la base de datos
 	$starttime = microtime(true);
+	set_time_limit(0);
 
 	function calculateInd($id,$dbh,$type,$level){
 
@@ -312,26 +313,6 @@
 			
 
 		}
-		
-		//Ingreso información de analisis
-
-		$endtime = microtime(true);
-		$_SESSION['time']+= $endtime - $starttime;
-		$bateo = (100*$_SESSION['found'])/($_SESSION['total']-$_SESSION['empty']-$_SESSION['himself']);
-		$bateo = round($bateo, 2);
-		$noRecognized = (($_SESSION['total']-$_SESSION['empty'])-$_SESSION['found'] -$_SESSION['himself']);
-		$himself = $_SESSION['himself'];
-		$dbh->beginTransaction();
-
-		$sql = "USE `adminSociometria`";
-      	$stmt = $dbh->prepare($sql);
-      	$stmt->execute();
-
-
-
-      	$sql = "UPDATE analisis SET estatus = ?, bateo = ?,totalEmpleados = ?,encuestasEnBlanco = ?, nombresReconocidos = ?,nombresNoReconocidos = ?,porSiMismo = ?,tiempoEjecucion = ? WHERE idAnalisis = ?";
-		$stmt = $dbh->prepare($sql);
-		$stmt->execute(array(1,$bateo,$_SESSION['total']/9,$_SESSION['empty'],$_SESSION['found'],$noRecognized ,$himself,  $_SESSION['time'],$_SESSION['idAnalisis']));
 
 		$sql="SELECT idTrabajador FROM contadorPersona";
 		$stmt = $dbh->prepare($sql);
@@ -387,6 +368,27 @@
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 		}
+		
+		//Ingreso información de analisis
+
+		$endtime = microtime(true);
+		$_SESSION['time']+= $endtime - $starttime;
+		$bateo = (100*$_SESSION['found'])/($_SESSION['total']-$_SESSION['empty']-$_SESSION['himself']);
+		$bateo = round($bateo, 2);
+		$noRecognized = (($_SESSION['total']-$_SESSION['empty'])-$_SESSION['found'] -$_SESSION['himself']);
+		$himself = $_SESSION['himself'];
+		$dbh->beginTransaction();
+
+		$sql = "USE `adminSociometria`";
+      	$stmt = $dbh->prepare($sql);
+      	$stmt->execute();
+
+
+
+      	$sql = "UPDATE analisis SET estatus = ?, bateo = ?,totalEmpleados = ?,encuestasEnBlanco = ?, nombresReconocidos = ?,nombresNoReconocidos = ?,porSiMismo = ?,tiempoEjecucion = ? WHERE idAnalisis = ?";
+		$stmt = $dbh->prepare($sql);
+		$stmt->execute(array(1,$bateo,$_SESSION['total']/9,$_SESSION['empty'],$_SESSION['found'],$noRecognized ,$himself,  $_SESSION['time'],$_SESSION['idAnalisis']));
+
       	
       	$dbh->commit();
 
