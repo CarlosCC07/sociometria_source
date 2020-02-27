@@ -2,7 +2,7 @@
 	require "../bd/config.php"; //Incluyo la base de datos
 	$starttime = microtime(true);
 	set_time_limit(0);
-
+/*
 	function calculateInd($id,$dbh,$type,$level){
 
 		if($level > 20) {
@@ -82,6 +82,7 @@
 
 		return $cont;
 	}
+	*/
 		
 	try {
 		$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
@@ -312,6 +313,7 @@
 
 		}
 
+		/*
 		$sql="SELECT idTrabajador FROM contadorPersona";
 		$stmt = $dbh->prepare($sql);
 		$stmt->execute();
@@ -321,7 +323,7 @@
 
 		for($i = 0;$i < $total; $i++){
 			$id = $ids[$i]->idTrabajador; // Tengo el id del que fue votado
-			/************ ASCENDENCIA *************/
+			/************ ASCENDENCIA ************
 			$cont = calculateInd($id,$dbh,1,1);
 			$sql = "UPDATE contadorPersona SET ascendenciaInd = ascendenciaInd + ".$cont." WHERE idTrabajador = ".$id."";
 			$stmt = $dbh->prepare($sql);
@@ -336,7 +338,7 @@
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 
-			/************ AFINIDAD *************/
+			/************ AFINIDAD ************
 			$cont = calculateInd($id,$dbh,2,1);
 			$sql = "UPDATE contadorPersona SET afinidadInd = afinidadInd + ".$cont." WHERE idTrabajador = ".$id."";
 			$stmt = $dbh->prepare($sql);
@@ -351,7 +353,7 @@
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 
-			/************ POPULARIDAD *************/
+			/************ POPULARIDAD ************
 			$cont = calculateInd($id,$dbh,3,1);
 			$sql = "UPDATE contadorPersona SET popularidadInd = popularidadInd + ".$cont." WHERE idTrabajador = ".$id."";
 			$stmt = $dbh->prepare($sql);
@@ -366,6 +368,7 @@
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 		}
+		*/
 		
 		//Ingreso información de analisis
 
