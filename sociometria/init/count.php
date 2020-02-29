@@ -15,6 +15,14 @@
 	global $dbname;
 	global $dbhost;
 
+	function var_error_log($object){
+	    ob_start();                    // start buffer capture
+	    var_dump($object);           // dump the values
+	    $contents = ob_get_contents(); // put the buffer into a variable
+	    ob_end_clean();                // end capture
+	    error_log($contents);        // log contents of the result of var_dump( $object )
+	}
+
 	function calculateInd($id,$dbh,$type,$level){
 		//$cont = 0;
 		if($level == 20){
@@ -26,7 +34,9 @@
 			$stmt->execute();
 			$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-			if(!is_object($idsInd)){
+			var_error_log($idsInd);
+
+			if(is_null($idsInd)){
 				return 0;
 			}
 
@@ -44,7 +54,7 @@
 			$stmt->execute();
 			$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-			if(!is_object($idsInd)){
+			if(is_null($idsInd)){
 				return 0;
 			}
 
@@ -61,7 +71,7 @@
 			$stmt->execute();
 			$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-			if(!is_object($idsInd)){
+			if(is_null($idsInd)){
 				return 0;
 			}
 
