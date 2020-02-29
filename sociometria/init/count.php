@@ -32,7 +32,7 @@
 
 			$cont = count($idsInd);
 
-			for($i=0;$i<$total){
+			for($i=0;$i<$total;$i++){
 				$temp = calculateInd($idsInd[$i]->idTrabajador,$dbh,1,$level+1);
 				$cont = $cont + $temp;
 			}
@@ -49,7 +49,7 @@
 
 			$cont = count($idsInd);
 
-			for($i=0;$i<$total){
+			for($i=0;$i<$total;$i++){
 				$temp = calculateInd($idsInd[$i]->idTrabajador,$dbh,2,$level+1);
 				$cont = $cont + $temp;
 			}
@@ -65,7 +65,7 @@
 
 			$cont = count($idsInd);
 
-			for($i=0;$i<$total){
+			for($i=0;$i<$total;$i++){
 				$temp = calculateInd($idsInd[$i]->idTrabajador,$dbh,3,$level+1);
 				$cont = $cont + $temp;
 			}
