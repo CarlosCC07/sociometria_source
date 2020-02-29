@@ -25,6 +25,8 @@
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
+			var_dump($idsInd);
+			echo "<script>console.log(".var_dump($idsInd);.")</script>";
 
 			if(is_null($idsInd)){
 				return 0;
