@@ -24,7 +24,7 @@
 	}
 
 	function calculateInd($id,$dbh,$type,$level){
-		//$cont = 0;
+		$cont = 0;
 		if($level == 20){
 			return 0;
 		}
@@ -41,11 +41,12 @@
 			}
 
 			$total = count($idsInd);
+			$cont = $cont + $total;
 
 			for($i=0;$i<$total;$i++){
 				$id2 = $idsInd[$i]->idTrabajador;
 				$temp = calculateInd($id2,$dbh,1,$level+1);
-				$cont = $temp + $total;
+				$cont = $cont + $temp;
 			}
 
 		} elseif ($type == 2) {
@@ -59,11 +60,12 @@
 			}
 
 			$total = count($idsInd);
+			$cont = $cont + $total;
 
 			for($i=0;$i<$total;$i++){
 				$id2 = $idsInd[$i]->idTrabajador;
 				$temp = calculateInd($id2,$dbh,2,$level+1);
-				$cont = $temp + $total;
+				$cont = $cont + $temp;
 			}
 		} elseif ($type == 3) {
 			$sql="SELECT idTrabajador FROM encuestaPersona WHERE idPopularidad1 = '$id'"; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
@@ -76,11 +78,12 @@
 			}
 
 			$total = count($idsInd);
+			$cont = $cont + $total;
 
 			for($i=0;$i<$total;$i++){
 				$id2 = $idsInd[$i]->idTrabajador;
 				$temp = calculateInd($id2,$dbh,3,$level+1);
-				$cont = $temp + $total;
+				$cont = $cont + $temp;
 			}
 		}
 
