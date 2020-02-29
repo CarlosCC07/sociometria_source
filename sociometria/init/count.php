@@ -33,7 +33,8 @@
 			$cont = count($idsInd);
 
 			for($i=0;$i<$cont;$i++){
-				$temp = calculateInd($idsInd[$i]->idTrabajador,$dbh,1,$level+1);
+				$id2 = $idsInd[$i]->idTrabajador;
+				$temp = calculateInd($id2,$dbh,1,$level+1);
 				$cont = $cont + $temp;
 			}
 
@@ -50,7 +51,8 @@
 			$cont = count($idsInd);
 
 			for($i=0;$i<$cont;$i++){
-				$temp = calculateInd($idsInd[$i]->idTrabajador,$dbh,2,$level+1);
+				$id2 = $idsInd[$i]->idTrabajador;
+				$temp = calculateInd($id2,$dbh,2,$level+1);
 				$cont = $cont + $temp;
 			}
 		} elseif ($type == 3) {
@@ -66,7 +68,8 @@
 			$cont = count($idsInd);
 
 			for($i=0;$i<$cont;$i++){
-				$temp = calculateInd($idsInd[$i]->idTrabajador,$dbh,3,$level+1);
+				$id2 = $idsInd[$i]->idTrabajador;
+				$temp = calculateInd($id2,$dbh,3,$level+1);
 				$cont = $cont + $temp;
 			}
 		}
