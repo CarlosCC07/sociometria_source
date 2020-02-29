@@ -16,9 +16,9 @@
 	global $dbhost;
 
 	function calculateInd($id,$dbh,$type,$level){
-		$cont = 0;
+		//$cont = 0;
 		if($level == 20){
-			return $cont;
+			return 0;
 		}
 		if($type == 1){
 			$sql="SELECT idTrabajador FROM encuestaPersona WHERE idAscendencia1 = '$id'"; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
@@ -232,7 +232,7 @@
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
 				$cont = $value[0] -> contAfinidad1;
 				*/
-				$cont = calculateInd($id2,$dbh,1,1);
+				$cont = calculateInd($id2,$dbh,2,1);
 				$sql = "UPDATE contadorPersona SET afinidadInd = afinidadInd + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
@@ -271,7 +271,7 @@
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
 				$cont = $value[0] -> contPopularidad1;
 				*/
-				$cont = calculateInd($id2,$dbh,1,1);
+				$cont = calculateInd($id2,$dbh,3,1);
 				$sql = "UPDATE contadorPersona SET popularidadInd = popularidadInd + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
