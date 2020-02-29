@@ -36,17 +36,16 @@
 
 			//var_error_log($idsInd);
 
-			$cont = count($idsInd);
-
-			if($cont > 0){
-				for($i=0;$i<$cont;$i++){
-					$id2 = $idsInd[$i]->idTrabajador;
-					$temp = calculateInd($id2,$dbh,1,$level+1);
-					$cont = $cont + $temp;
-				}
-
-			} else {
+			if(is_null($idsInd)){
 				return 0;
+			}
+
+			$total = count($idsInd);
+
+			for($i=0;$i<$total;$i++){
+				$id2 = $idsInd[$i]->idTrabajador;
+				$temp = calculateInd($id2,$dbh,1,$level+1);
+				$cont = $temp + $total;
 			}
 
 		} elseif ($type == 2) {
@@ -55,34 +54,33 @@
 			$stmt->execute();
 			$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-			$cont = count($idsInd);
-
-			if($cont > 0){
-				for($i=0;$i<$cont;$i++){
-					$id2 = $idsInd[$i]->idTrabajador;
-					$temp = calculateInd($id2,$dbh,2,$level+1);
-					$cont = $cont + $temp;
-				}
-			} else {
+			if(is_null($idsInd)){
 				return 0;
 			}
 
+			$total = count($idsInd);
+
+			for($i=0;$i<$total;$i++){
+				$id2 = $idsInd[$i]->idTrabajador;
+				$temp = calculateInd($id2,$dbh,2,$level+1);
+				$cont = $temp + $total;
+			}
 		} elseif ($type == 3) {
 			$sql="SELECT idTrabajador FROM encuestaPersona WHERE idPopularidad1 = '$id'"; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-			$cont = count($idsInd);
-
-			if($cont > 0){
-				for($i=0;$i<$cont;$i++){
-					$id2 = $idsInd[$i]->idTrabajador;
-					$temp = calculateInd($id2,$dbh,3,$level+1);
-					$cont = $cont + $temp;
-				}
-			} else {
+			if(is_null($idsInd)){
 				return 0;
+			}
+
+			$total = count($idsInd);
+
+			for($i=0;$i<$total;$i++){
+				$id2 = $idsInd[$i]->idTrabajador;
+				$temp = calculateInd($id2,$dbh,3,$level+1);
+				$cont = $temp + $total;
 			}
 		}
 
