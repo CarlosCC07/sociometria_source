@@ -28,7 +28,8 @@
 		if($level == 20){
 			return 0;
 		}
-		$processedKeys[$id] = 0;
+		$pK = $processedKeys;
+		$pK[$id] = 0;
 		
 		if($type == 1){
 			$sql="SELECT idTrabajador FROM encuestaPersona WHERE idAscendencia1 = '$id'"; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
@@ -47,11 +48,12 @@
 
 			for($i=0;$i<$total;$i++){
 				$id2 = $idsInd[$i]->idTrabajador;
-				if(!array_key_exists($id2,$processedKeys)){
-					$processedKeys[$id2] = 0;
-					$temp = calculateInd($id2,$dbh,1,$level+1,$processedKeys);
+				if(!array_key_exists($id2,$pK)){
+					$temp = calculateInd($id2,$dbh,1,$level+1,$pK);
 					$cont = $cont + $temp;
 				} 
+				$pK = $processedKeys;
+				$pK[$id] = 0;
 			}
 
 		} elseif ($type == 2) {
@@ -69,11 +71,12 @@
 
 			for($i=0;$i<$total;$i++){
 				$id2 = $idsInd[$i]->idTrabajador;
-				if(!array_key_exists($id2,$processedKeys)){
-					$processedKeys[$id2] = 0;
-					$temp = calculateInd($id2,$dbh,1,$level+1,$processedKeys);
+				if(!array_key_exists($id2,$pK)){
+					$temp = calculateInd($id2,$dbh,1,$level+1,$pK);
 					$cont = $cont + $temp;
 				} 
+				$pK = $processedKeys;
+				$pK[$id] = 0;
 			}
 		} elseif ($type == 3) {
 			$sql="SELECT idTrabajador FROM encuestaPersona WHERE idPopularidad1 = '$id'"; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
@@ -90,11 +93,12 @@
 
 			for($i=0;$i<$total;$i++){
 				$id2 = $idsInd[$i]->idTrabajador;
-				if(!array_key_exists($id2,$processedKeys)){
-					$processedKeys[$id2] = 0;
-					$temp = calculateInd($id2,$dbh,1,$level+1,$processedKeys);
+				if(!array_key_exists($id2,$pK)){
+					$temp = calculateInd($id2,$dbh,1,$level+1,$pK);
 					$cont = $cont + $temp;
 				} 
+				$pK = $processedKeys;
+				$pK[$id] = 0;
 			}
 		}
 
@@ -206,6 +210,7 @@
 		for($i = 0;$i < $total; $i++){
 			$id = $ids[$i]->idTrabajador; // Tengo el id del que fue votado
 			$pkArr = array();
+			$pkArr[$id] = 0;
 			
 			
 			// INDIRECTOS
@@ -221,11 +226,10 @@
 			
 			for($j = 0; $j <$totalInd;$j++){
 				$id2 = $idInd[$j]->idTrabajador;
-
+				
+				$cont = calculateInd($id2,$dbh,1,1,$pkArr);
 				$pkArr = array();
 				$pkArr[$id] = 0;
-
-				$cont = calculateInd($id2,$dbh,1,1,$pkArr);
 				$sql = "UPDATE contadorPersona SET ascendenciaInd = ascendenciaInd + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
@@ -263,11 +267,9 @@
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
 				$cont = $value[0] -> contAfinidad1;
 				*/
-
+				$cont = calculateInd($id2,$dbh,2,1,$pkArr);
 				$pkArr = array();
 				$pkArr[$id] = 0;
-
-				$cont = calculateInd($id2,$dbh,2,1,$pkArr);
 				$sql = "UPDATE contadorPersona SET afinidadInd = afinidadInd + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
@@ -306,11 +308,9 @@
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
 				$cont = $value[0] -> contPopularidad1;
 				*/
-
+				$cont = calculateInd($id2,$dbh,3,1,$pkArr);
 				$pkArr = array();
 				$pkArr[$id] = 0;
-				
-				$cont = calculateInd($id2,$dbh,3,1,$pkArr);
 				$sql = "UPDATE contadorPersona SET popularidadInd = popularidadInd + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
