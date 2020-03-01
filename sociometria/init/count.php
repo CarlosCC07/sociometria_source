@@ -206,7 +206,6 @@
 		for($i = 0;$i < $total; $i++){
 			$id = $ids[$i]->idTrabajador; // Tengo el id del que fue votado
 			$pkArr = array();
-			$pkArr[$id] = 0;
 			
 			
 			// INDIRECTOS
@@ -222,7 +221,10 @@
 			
 			for($j = 0; $j <$totalInd;$j++){
 				$id2 = $idInd[$j]->idTrabajador;
-				
+
+				$pkArr = array();
+				$pkArr[$id] = 0;
+
 				$cont = calculateInd($id2,$dbh,1,1,$pkArr);
 				$sql = "UPDATE contadorPersona SET ascendenciaInd = ascendenciaInd + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
@@ -261,6 +263,10 @@
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
 				$cont = $value[0] -> contAfinidad1;
 				*/
+
+				$pkArr = array();
+				$pkArr[$id] = 0;
+
 				$cont = calculateInd($id2,$dbh,2,1,$pkArr);
 				$sql = "UPDATE contadorPersona SET afinidadInd = afinidadInd + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
@@ -300,6 +306,10 @@
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
 				$cont = $value[0] -> contPopularidad1;
 				*/
+
+				$pkArr = array();
+				$pkArr[$id] = 0;
+				
 				$cont = calculateInd($id2,$dbh,3,1,$pkArr);
 				$sql = "UPDATE contadorPersona SET popularidadInd = popularidadInd + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
