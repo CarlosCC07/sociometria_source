@@ -223,11 +223,16 @@
 			//Guardo el total global
 			//Prueba C: $sql = "UPDATE contadorPersona SET total = ".$totalGlobal." WHERE idTrabajador = ".$idsWorker[$i]->idTrabajador;
 			//Prueba Z: $sql = "UPDATE contadorPersona SET total = total + ".$totalGlobal." WHERE idTrabajador = ".$idsWorker[$i]->idTrabajador;
-			$sql = "UPDATE contadorPersona SET total = total + ".$totalGlobal." WHERE idTrabajador = ".$idsWorker[$i]->idTrabajador;
+			$sql = "UPDATE contadorPersona SET total = ".$totalGlobal." WHERE idTrabajador = ".$idsWorker[$i]->idTrabajador;
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 
 			$sql = "UPDATE contadorPersona SET totalAmp = ".$totalGlobalAmp." WHERE idTrabajador = ".$idsWorker[$i]->idTrabajador;
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+
+			//Comment if PruebaC
+			$sql = "UPDATE contadorPersona SET total = total + totalIndirecto WHERE idTrabajador = ".$idsWorker[$i]->idTrabajador;
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			
