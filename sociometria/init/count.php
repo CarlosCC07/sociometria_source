@@ -245,6 +245,9 @@
 				$sql = "UPDATE contadorPersona SET ascendenciaIndAmp = ascendenciaIndAmp + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
+				$sql = "UPDATE contadorPersona SET total = '$cont' WHERE idTrabajador = '$id'";
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
 						
 			}
 			
@@ -283,6 +286,9 @@
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
 				$cont = $value[0] -> afinidadDir;
 				$sql = "UPDATE contadorPersona SET afinidadIndAmp = afinidadIndAmp + '$cont' WHERE idTrabajador = '$id'";
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+				$sql = "UPDATE contadorPersona SET total = '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 			
@@ -324,6 +330,9 @@
 				$value = $stmt->fetchAll(PDO::FETCH_OBJ);
 				$cont = $value[0] -> popularidadDir;
 				$sql = "UPDATE contadorPersona SET popularidadIndAmp = popularidadIndAmp + '$cont' WHERE idTrabajador = '$id'";
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+				$sql = "UPDATE contadorPersona SET total = '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 			
