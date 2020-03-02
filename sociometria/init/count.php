@@ -25,6 +25,7 @@
 
 	function calculateInd($id,$dbh,$type,$level,$processedKeys){
 		$cont = 0;
+		var_error_log($processedKeys);
 		if($level == 20){
 			return 0;
 		}
@@ -36,8 +37,6 @@
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			$idsInd = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-			//var_error_log($idsInd);
 
 			if(is_null($idsInd)){
 				return 0;
@@ -72,7 +71,7 @@
 			for($i=0;$i<$total;$i++){
 				$id2 = $idsInd[$i]->idTrabajador;
 				if(!array_key_exists($id2,$pK)){
-					$temp = calculateInd($id2,$dbh,1,$level+1,$pK);
+					$temp = calculateInd($id2,$dbh,2,$level+1,$pK);
 					$cont = $cont + $temp;
 				} 
 				$pK = $processedKeys;
@@ -94,7 +93,7 @@
 			for($i=0;$i<$total;$i++){
 				$id2 = $idsInd[$i]->idTrabajador;
 				if(!array_key_exists($id2,$pK)){
-					$temp = calculateInd($id2,$dbh,1,$level+1,$pK);
+					$temp = calculateInd($id2,$dbh,3,$level+1,$pK);
 					$cont = $cont + $temp;
 				} 
 				$pK = $processedKeys;
