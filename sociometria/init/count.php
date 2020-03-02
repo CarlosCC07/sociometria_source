@@ -245,7 +245,7 @@
 				$sql = "UPDATE contadorPersona SET ascendenciaIndAmp = ascendenciaIndAmp + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
-				$sql = "UPDATE contadorPersona SET total = '$cont' WHERE idTrabajador = '$id'";
+				$sql = "UPDATE contadorPersona SET total = total + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 						
@@ -288,7 +288,7 @@
 				$sql = "UPDATE contadorPersona SET afinidadIndAmp = afinidadIndAmp + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
-				$sql = "UPDATE contadorPersona SET total = '$cont' WHERE idTrabajador = '$id'";
+				$sql = "UPDATE contadorPersona SET total = total + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 			
@@ -332,7 +332,7 @@
 				$sql = "UPDATE contadorPersona SET popularidadIndAmp = popularidadIndAmp + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
-				$sql = "UPDATE contadorPersona SET total = '$cont' WHERE idTrabajador = '$id'";
+				$sql = "UPDATE contadorPersona SET total = total + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 			
