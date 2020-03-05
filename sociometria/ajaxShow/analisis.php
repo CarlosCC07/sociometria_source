@@ -86,7 +86,7 @@
 			$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
 			$total = count($info);
 		} else {
-			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, p.bidr, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$segmentString." ORDER BY cp.".$orderBy." DESC ";
+			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, p.bidr, cp.total as totalPD, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$segmentString." ORDER BY cp.".$orderBy." DESC ";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
@@ -137,6 +137,7 @@
 		echo "<th rowspan=\"2\" >Nombre</th>";
 		echo "<th colspan=\"2\" >".(ucfirst($type))."</th>";
 		echo "<th rowspan=\"2\">Ind. POD</th>";
+		echo "<th rowspan=\"2\">Total PD</th>";
 		echo "</tr>";
 		echo "<tr class=\"title\" style=\"background-color:rgb(65, 105, 225);color:white;\">";
 		echo "<th>Dir.</th>";
@@ -188,6 +189,7 @@
 				echo"<td style=\"text-align:center;\">".$info[$i]->dir."</td>";
 				echo "<td style=\"text-align:center;\">".$info[$i]->ind."</td>";
 				echo "<td style=\"text-align:center;\">".$info[$i]->total."</td>";
+				echo "<td style=\"text-align:center;\">".$info[$i]->totalPD."</td>";
 				echo "</tr>";
 
             } 
