@@ -51,27 +51,36 @@
 
 	if($typeVar == 0){
 	    if($order == 0){
-		$orderBy = "ascendenciaDir";
-		$typeTitle= "Ascendencia Directa";
+			$orderBy = "ascendenciaDir";
+			$typeTitle= "Ascendencia Directa";
+	    } elseif ($order == 1) {
+	    	$orderBy = "ascendenciaInd";
+			$typeTitle= "Ascendencia Indirecta";
 	    } else {
-		$orderBy = "ascendenciaInd";
-		$typeTitle= "Ascendencia Indirecta";
+			$orderBy = "total DESC, cp.ascendenciaDir";
+			$typeTitle= "Total PD";
 	    }
 	} elseif ($typeVar == 1) {
 	    if($order == 0){
-		$orderBy = "afinidadDir";
-		$typeTitle= "Afinidad Directa";
+			$orderBy = "afinidadDir";
+			$typeTitle= "Afinidad Directa";
+	    } elseif ($order == 1) {
+		    $orderBy = "afinidadInd";
+			$typeTitle= "Afinidad Indirecta";
 	    } else {
-		$orderBy = "afinidadInd";
-		$typeTitle= "Afinidad Indirecta";
+			$orderBy = "total DESC, cp.afinidadDir";
+			$typeTitle= "Total PD";
 	    }
 	} elseif ($typeVar == 2) {
 	    if($order == 0){
-		$orderBy = "popularidadDir";
-		$typeTitle= "Popularidad Directa";
+			$orderBy = "popularidadDir";
+			$typeTitle= "Popularidad Directa";
+	    } elseif ($order == 1) {
+	    	$orderBy = "popularidadInd";
+			$typeTitle= "Popularidad Indirecta";
 	    } else {
-		$orderBy = "popularidadInd";
-		$typeTitle= "Popularidad Indirecta";
+			$orderBy = "total DESC, cp.popularidadDir";
+			$typeTitle= "TotalPD";
 	    }
 	}
 
@@ -120,6 +129,7 @@
 		echo "<select id=\"orderBy\" name=\"".$typeVar."\" class=\"span4\" onchange=\"changeTypeOrder(this,".$plant.")\">";
 		echo "<option >Directo</option>";
 		echo "<option >Indirecto</option>";
+		echo "<option >Total PD</option>";
 		echo "<select>";
 		echo "</div>";
 

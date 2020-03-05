@@ -54,7 +54,7 @@ function analisis(type,plant,orderBy,limit,seg,extra){
 	var value = 0;
 	var segm = 0;
 	var lim = 0;
-	var oB = 0;
+	var oB = 2;
 	if(extra != null)
 	    value = extra;
 	if(seg != null)
