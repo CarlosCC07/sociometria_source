@@ -66,15 +66,15 @@
 			
 			$orderBy="";
 			switch($order){
-				case 0:$orderBy="cp.ascendenciaDir";$typeTitle="Ascendencia Directa";break;
-				case 1:$orderBy="cp.ascendenciaInd";$typeTitle="Ascendencia Indirecta";break;
-				case 2:$orderBy="cp.afinidadDir";$typeTitle="Afinidad Directa";break;
-				case 3:$orderBy="cp.afinidadInd";$typeTitle="Afinidad Indirecta";break;
-				case 4:$orderBy="cp.popularidadDir";$typeTitle="Popularidad Directa";break;
-				case 5:$orderBy="cp.popularidadInd";$typeTitle="Popularidad Indirecta";break;
-				case 6:$orderBy="cp.totalDirecto";$typeTitle="Total Directo";break;
-				case 7:$orderBy="cp.totalIndirecto";$typeTitle="Total Indirecto";break;
-				case 8:$orderBy="cp.total";$typeTitle="Total";break;
+				case 0:$orderBy="cp.ascendenciaDir DESC, cp.totalDirecto DESC, cp.totalIndirecto";$typeTitle="Ascendencia Directa";break;
+				case 1:$orderBy="cp.ascendenciaInd DESC, cp.totalDirecto DESC, cp.totalIndirecto";$typeTitle="Ascendencia Indirecta";break;
+				case 2:$orderBy="cp.afinidadDir DESC, cp.totalDirecto DESC, cp.totalIndirecto";$typeTitle="Afinidad Directa";break;
+				case 3:$orderBy="cp.afinidadInd DESC, cp.totalDirecto DESC, cp.totalIndirecto";$typeTitle="Afinidad Indirecta";break;
+				case 4:$orderBy="cp.popularidadDir DESC, cp.totalDirecto DESC, cp.totalIndirecto";$typeTitle="Popularidad Directa";break;
+				case 5:$orderBy="cp.popularidadInd DESC, cp.totalDirecto DESC, cp.totalIndirecto";$typeTitle="Popularidad Indirecta";break;
+				case 6:$orderBy="cp.totalDirecto DESC, cp.totalIndirecto";$typeTitle="Total Directo";break;
+				case 7:$orderBy="cp.totalIndirecto DESC, cp.totalDirecto";$typeTitle="Total Indirecto";break;
+				case 8:$orderBy="cp.total, cp.totalDirecto DESC, cp.totalIndirecto";$typeTitle="Total";break;
 				case 9:$orderBy="cp.totalAmp";$typeTitle="Total Ampliado";break;
 			}
 
@@ -125,8 +125,7 @@
 			echo "<option >Popularidad Ind.</option>";
 			echo "<option >Total Dir.</option>";
 			echo "<option >Total Ind.</option>";
-			echo "<option >Total</option>";
-			echo "<option >Total Ampliado</option>";
+			echo "<option >Total Personas</option>";
 			echo "<select>";
 			echo "</div>";
 

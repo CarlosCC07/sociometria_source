@@ -136,7 +136,7 @@
         echo "<th rowspan=\"2\" >Antig.</th>";
 		echo "<th rowspan=\"2\" >Nombre</th>";
 		echo "<th colspan=\"2\" >".(ucfirst($type))."</th>";
-		echo "<th rowspan=\"2\">Total</th>";
+		echo "<th rowspan=\"2\">Ind. POD</th>";
 		echo "</tr>";
 		echo "<tr class=\"title\" style=\"background-color:rgb(65, 105, 225);color:white;\">";
 		echo "<th>Dir.</th>";

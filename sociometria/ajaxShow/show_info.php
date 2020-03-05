@@ -46,10 +46,10 @@ try {
 
                         <li class="nav-header">Análisis Global</li>
 
-                        <li id="o2"><a href="#" onclick="globalAnalisisShow(10,6)">Global</a></li>
+                        <li id="o2"><a href="#" onclick="globalAnalisisShow(10,8)">Global</a></li>
                         <?php
                             for($i=0;$i<count($plants);$i++)
-                                echo "<li><a href=\"#\" onclick=\"globalAnalisisShow(".$i.",6)\">".$plants[$i]."</a></li>";
+                                echo "<li><a href=\"#\" onclick=\"globalAnalisisShow(".$i.",8)\">".$plants[$i]."</a></li>";
                         ?>
 
                         <li class="nav-header">Análisis Ascendencia</li>
