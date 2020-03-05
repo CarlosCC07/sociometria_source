@@ -54,28 +54,28 @@ try {
 
                         <li class="nav-header">Análisis Ascendencia</li>
 
-                        <li id="o5"><a href="#" onclick="analisis(0,10)">Global</a></li>
+                        <li id="o5"><a href="#" onclick="analisis(0,10,2)">Global</a></li>
                          <?php
                             for($i=0;$i<count($plants);$i++)
-                                echo "<li><a href=\"#\" onclick=\"analisis(0,".$i.")\">".$plants[$i]."</a></li>";
+                                echo "<li><a href=\"#\" onclick=\"analisis(0,".$i.",2)\">".$plants[$i]."</a></li>";
                         ?>
 
                         <li class="nav-header">Análisis Afinidad</li>
 
-                        <li id="o8"><a href="#" onclick="analisis(1,10)">Global</a></li>
+                        <li id="o8"><a href="#" onclick="analisis(1,10,2)">Global</a></li>
                          <?php
                             for($i=0;$i<count($plants);$i++){
-                                echo "<li><a href=\"#\" onclick=\"analisis(1,".$i.")\">".$plants[$i]."</a></li>";
+                                echo "<li><a href=\"#\" onclick=\"analisis(1,".$i.",2)\">".$plants[$i]."</a></li>";
                             }
 
                         ?>
 
                         <li class="nav-header">Análisis Popularidad</li>
 
-                        <li id="o11" ><a href="#" onclick="analisis(2,10)">Global</a></li>
+                        <li id="o11" ><a href="#" onclick="analisis(2,10,2)">Global</a></li>
                          <?php
                             for($i=0;$i<count($plants);$i++){
-                                echo "<li><a href=\"#\" onclick=\"analisis(2,".$i.")\">".$plants[$i]."</a></li>";
+                                echo "<li><a href=\"#\" onclick=\"analisis(2,".$i.",2)\">".$plants[$i]."</a></li>";
                             }
 
                         ?>
