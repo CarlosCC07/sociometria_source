@@ -74,7 +74,7 @@
 				case 5:$orderBy="cp.popularidadInd, popularidadDir";$typeTitle="Popularidad Indirecta";break;
 				case 6:$orderBy="cp.totalDirecto DESC, cp.totalIndirecto";$typeTitle="Total Directo";break;
 				case 7:$orderBy="cp.totalIndirecto DESC, cp.totalDirecto";$typeTitle="Total Indirecto";break;
-				case 8:$orderBy="cp.total";$typeTitle="Total";break;
+				case 8:$orderBy="cp.total DESC, cp.totalDirecto DESC, cp.totalIndirecto";$typeTitle="Total";break;
 				case 9:$orderBy="cp.totalAmp";$typeTitle="Total Ampliado";break;
 			}
 
