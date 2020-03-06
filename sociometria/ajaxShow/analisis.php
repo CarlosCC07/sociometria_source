@@ -89,13 +89,13 @@
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		if($extra == 0){
-			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, p.bidr, cp.".$type."PD AS totalPD, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY cp.".$orderBy." DESC ".$limit."";
+			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, p.bidr, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY cp.".$orderBy." DESC ".$limit."";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
 			$total = count($info);
 		} else {
-			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, p.bidr, cp.".$type."PD AS totalPD, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$segmentString." ORDER BY cp.total, cp.".$orderBy." DESC ";
+			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, p.bidr, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$segmentString." ORDER BY cp.total, cp.".$orderBy." DESC ";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
@@ -129,7 +129,7 @@
 		echo "<select id=\"orderBy\" name=\"".$typeVar."\" class=\"span4\" onchange=\"changeTypeOrder(this,".$plant.")\">";
 		echo "<option >Directo</option>";
 		echo "<option >Indirecto</option>";
-		echo "<option >Total PD</option>";
+		echo "<option >Ind. LID</option>";
 		echo "<select>";
 		echo "</div>";
 
@@ -147,7 +147,7 @@
 		echo "<th rowspan=\"2\" >Nombre</th>";
 		echo "<th colspan=\"2\" >".(ucfirst($type))."</th>";
 		echo "<th rowspan=\"2\">Ind. POD</th>";
-		echo "<th rowspan=\"2\">Total PD</th>";
+		echo "<th rowspan=\"2\">Ind. LID</th>";
 		echo "</tr>";
 		echo "<tr class=\"title\" style=\"background-color:rgb(65, 105, 225);color:white;\">";
 		echo "<th>Dir.</th>";
@@ -199,7 +199,7 @@
 				echo"<td style=\"text-align:center;\">".$info[$i]->dir."</td>";
 				echo "<td style=\"text-align:center;\">".$info[$i]->ind."</td>";
 				echo "<td style=\"text-align:center;\">".$info[$i]->total."</td>";
-				echo "<td style=\"text-align:center;\">".$info[$i]->totalPD."</td>";
+				echo "<td style=\"text-align:center;\">".$info[$i]->ind."</td>";
 				echo "</tr>";
 
             } 
