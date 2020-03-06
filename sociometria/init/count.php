@@ -237,10 +237,6 @@
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 
-				$sql = "UPDATE contadorPersona SET ascendenciaPD = '$cont' WHERE idTrabajador = '$id'";
-				$stmt = $dbh->prepare($sql);
-				$stmt->execute();
-
 				$sql="SELECT ascendenciaDir FROM contadorPersona WHERE idTrabajador = '$id2'"; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
@@ -278,10 +274,6 @@
 				$stmt->execute();
 				
 				$sql = "UPDATE contadorPersona SET totalIndirecto = totalIndirecto + '$cont' WHERE idTrabajador = '$id'";
-				$stmt = $dbh->prepare($sql);
-				$stmt->execute();
-
-				$sql = "UPDATE contadorPersona SET afinidadPD = '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 
@@ -326,10 +318,6 @@
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
 
-				$sql = "UPDATE contadorPersona SET popularidadPD = '$cont' WHERE idTrabajador = '$id'";
-				$stmt = $dbh->prepare($sql);
-				$stmt->execute();
-				
 				$sql="SELECT popularidadDir FROM contadorPersona WHERE idTrabajador = '$id2'"; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
