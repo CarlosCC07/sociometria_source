@@ -131,6 +131,9 @@ function createDatabase($dbName,$year,$plants,$id,$company,$idAnalisis,$extra){
           `ascendenciaTotal` int(4) DEFAULT '0',
           `afinidadTotal` int(4) DEFAULT '0',
           `popularidadTotal` int(4) DEFAULT '0',
+          `ascendenciaPD` int(4) DEFAULT '0',
+          `afinidadPD` int(4) DEFAULT '0',
+          `popularidadPD` int(4) DEFAULT '0',
            PRIMARY KEY (`idTrabajador`)
          )ENGINE=MyISAM DEFAULT CHARSET=utf8;
         

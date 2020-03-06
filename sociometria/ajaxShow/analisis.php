@@ -57,7 +57,7 @@
 	    	$orderBy = "ascendenciaInd";
 			$typeTitle= "Ascendencia Indirecta";
 	    } else {
-			$orderBy = "total DESC, cp.ascendenciaDir";
+			$orderBy = "ascendenciaPD DESC, cp.ascendenciaDir";
 			$typeTitle= "Total PD";
 	    }
 	} elseif ($typeVar == 1) {
@@ -68,7 +68,7 @@
 		    $orderBy = "afinidadInd";
 			$typeTitle= "Afinidad Indirecta";
 	    } else {
-			$orderBy = "total DESC, cp.afinidadDir";
+			$orderBy = "afinidadPD DESC, cp.afinidadDir";
 			$typeTitle= "Total PD";
 	    }
 	} elseif ($typeVar == 2) {
@@ -79,7 +79,7 @@
 	    	$orderBy = "popularidadInd";
 			$typeTitle= "Popularidad Indirecta";
 	    } else {
-			$orderBy = "total DESC, cp.popularidadDir";
+			$orderBy = "popularidadPD DESC, cp.popularidadDir";
 			$typeTitle= "TotalPD";
 	    }
 	}
@@ -89,13 +89,13 @@
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		if($extra == 0){
-			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, p.bidr, cp.total AS totalPD, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY cp.".$orderBy." DESC ".$limit."";
+			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, p.bidr, cp.".$type."PD AS totalPD, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY cp.".$orderBy." DESC ".$limit."";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
 			$total = count($info);
 		} else {
-			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, p.bidr, cp.total AS totalPD, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$segmentString." ORDER BY cp.total, cp.".$orderBy." DESC ";
+			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, p.bidr, cp.".$type."PD AS totalPD, cp.".$type."Dir as dir, cp.".$type."Ind as ind,cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$segmentString." ORDER BY cp.total, cp.".$orderBy." DESC ";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
