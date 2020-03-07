@@ -25,12 +25,16 @@
 
 	function calculateInd($id,$dbh,$type,$level,$processedKeys){
 		$cont = 0;
-		var_error_log($processedKeys);
+		//var_error_log($processedKeys);
 		if($level == 20){
 			return 0;
 		}
+
 		$pK = $processedKeys;
-		$pK[$id] = 0;
+
+		if(!array_key_exists($id,$pK)){
+			$pK[$id] = 0;
+		}
 		
 		if($type == 1){
 			$sql="SELECT idTrabajador FROM encuestaPersona WHERE idAscendencia1 = '$id'"; // de una persona que voto, saco cuanto tiene en primer lugar de ascendencia
@@ -103,6 +107,110 @@
 
 		return $cont;
 		
+	}
+
+	function calculatePD($id,$dbh,$type){
+		if($type == 1){
+			$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAscendencia1 = '$id' OR idAscendencia2 = '$id' OR idAscendencia3 = '$id'";
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idDir = $stmt->fetchAll(PDO::FETCH_OBJ); // ids de las personas que votaron por el
+			$totalDir = count($idDir);
+
+			$processedKeys = array();
+			$processedKeys[$id] = 0;
+
+			for($i = 0;$i < $totalInd;$i++){
+				$id2 = $idInd[$i]->idTrabajador;
+				$processedKeys[$id2] = 0;
+			}
+
+			$sql="SELECT idTrabajador FROM encuestaPersona WHERE idAscendencia1 = '$id' OR idAscendencia2 = '$id' OR idAscendencia3 = '$id'";	
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idInd = $stmt->fetchAll(PDO::FETCH_OBJ);
+			$totalInd = count($idInd);
+
+			for($j = 0; $j <$totalInd;$j++){
+				$id2 = $idInd[$j]->idTrabajador;
+				$contAsc = calculateInd($id2,$dbh,1,1,$processedKeys);
+				$sql = "UPDATE contadorPersona SET ascendenciaPD = ascendenciaPD + '$contAsc' WHERE idTrabajador = '$id'";
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+			}
+
+			$sql = "UPDATE contadorPersona SET ascendenciaPD = ascendenciaPD + '$totalDir' WHERE idTrabajador = '$id'";
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+
+		} elseif($type == 2){
+			$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAfinidad1 = '$id' OR idAfinidad2 = '$id' OR idAfinidad3 = '$id'";
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idDir = $stmt->fetchAll(PDO::FETCH_OBJ); // ids de las personas que votaron por el
+			$totalDir = count($idDir);
+
+			$processedKeys = array();
+			$processedKeys[$id] = 0;
+
+			for($i = 0;$i < $totalInd;$i++){
+				$id2 = $idInd[$i]->idTrabajador;
+				$processedKeys[$id2] = 0;
+			}
+
+			$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAfinidad1 = '$id' OR idAfinidad2 = '$id' OR idAfinidad3 = '$id'";
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idInd = $stmt->fetchAll(PDO::FETCH_OBJ);
+			$totalInd = count($idInd);
+
+			for($j = 0; $j <$totalInd;$j++){
+				$id2 = $idInd[$j]->idTrabajador;
+				$contAfi = calculateInd($id2,$dbh,2,1,$processedKeys);
+				$sql = "UPDATE contadorPersona SET afinidadPD = afinidadPD + '$contAfi' WHERE idTrabajador = '$id'";
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+			}
+
+			$sql = "UPDATE contadorPersona SET afinidadPD = afinidadPD + '$totalDir' WHERE idTrabajador = '$id'";
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+
+		} elseif($type == 3){
+			$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idPopularidad1 = '$id' OR idPopularidad2 = '$id' OR idPopularidad3 = '$id'";
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idDir = $stmt->fetchAll(PDO::FETCH_OBJ); // ids de las personas que votaron por el
+			$totalDir = count($idDir);
+
+			$processedKeys = array();
+			$processedKeys[$id] = 0;
+
+			for($i = 0;$i < $totalInd;$i++){
+				$id2 = $idInd[$i]->idTrabajador;
+				$processedKeys[$id2] = 0;
+			}
+
+			$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idPopularidad1 = '$id' OR idPopularidad2 = '$id' OR idPopularidad3 = '$id'";
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idInd = $stmt->fetchAll(PDO::FETCH_OBJ);
+			$totalInd = count($idInd);
+
+			for($j = 0; $j <$totalInd;$j++){
+				$id2 = $idInd[$j]->idTrabajador;
+				$contPop = calculateInd($id2,$dbh,3,1,$processedKeys);
+				$sql = "UPDATE contadorPersona SET popularidadPD = popularidadPD + '$contPop' WHERE idTrabajador = '$id'";
+				$stmt = $dbh->prepare($sql);
+				$stmt->execute();
+			}
+
+			$sql = "UPDATE contadorPersona SET popularidadPD = popularidadPD + '$totalDir' WHERE idTrabajador = '$id'";
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+
+		}
+
 	}
 	
 	
@@ -208,6 +316,9 @@
 		
 		for($i = 0;$i < $total; $i++){
 			$id = $ids[$i]->idTrabajador; // Tengo el id del que fue votado
+			calculatePD($id,$dbh,1);
+			calculatePD($id,$dbh,2);
+			calculatePD($id,$dbh,3);
 			$pkArr = array();
 			$pkArr[$id] = 0;
 			
