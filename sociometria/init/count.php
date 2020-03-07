@@ -110,20 +110,27 @@
 	}
 
 	function calculatePD($id,$dbh,$type){
+
+		$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAscendencia1 = '$id' OR idAscendencia2 = '$id' OR idAscendencia3 = '$id' OR idAfinidad1 = '$id' OR idAfinidad2 = '$id' OR idAfinidad3 = '$id' OR idPopularidad1 = '$id' OR idPopularidad2 = '$id' OR idPopularidad3 = '$id'";
+		$stmt = $dbh->prepare($sql);
+		$stmt->execute();
+		$idTot = $stmt->fetchAll(PDO::FETCH_OBJ); // ids de las personas que votaron por el
+		$totalTot = count($idTot);
+
+		$processedKeys = array();
+		$processedKeys[$id] = 0;
+
+		for($k = 0;$k < $totalTot;$k++){
+			$id3 = $idTot[$k]->idTrabajador;
+			$processedKeys[$id3] = 0;
+		}
+
 		if($type == 1){
 			$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAscendencia1 = '$id' OR idAscendencia2 = '$id' OR idAscendencia3 = '$id'";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			$idDir = $stmt->fetchAll(PDO::FETCH_OBJ); // ids de las personas que votaron por el
 			$totalDir = count($idDir);
-
-			$processedKeys = array();
-			$processedKeys[$id] = 0;
-
-			for($i = 0;$i < $totalInd;$i++){
-				$id2 = $idInd[$i]->idTrabajador;
-				$processedKeys[$id2] = 0;
-			}
 
 			$sql="SELECT idTrabajador FROM encuestaPersona WHERE idAscendencia1 = '$id' OR idAscendencia2 = '$id' OR idAscendencia3 = '$id'";	
 			$stmt = $dbh->prepare($sql);
@@ -150,14 +157,6 @@
 			$idDir = $stmt->fetchAll(PDO::FETCH_OBJ); // ids de las personas que votaron por el
 			$totalDir = count($idDir);
 
-			$processedKeys = array();
-			$processedKeys[$id] = 0;
-
-			for($i = 0;$i < $totalInd;$i++){
-				$id2 = $idInd[$i]->idTrabajador;
-				$processedKeys[$id2] = 0;
-			}
-
 			$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAfinidad1 = '$id' OR idAfinidad2 = '$id' OR idAfinidad3 = '$id'";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
@@ -182,14 +181,6 @@
 			$stmt->execute();
 			$idDir = $stmt->fetchAll(PDO::FETCH_OBJ); // ids de las personas que votaron por el
 			$totalDir = count($idDir);
-
-			$processedKeys = array();
-			$processedKeys[$id] = 0;
-
-			for($i = 0;$i < $totalInd;$i++){
-				$id2 = $idInd[$i]->idTrabajador;
-				$processedKeys[$id2] = 0;
-			}
 
 			$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idPopularidad1 = '$id' OR idPopularidad2 = '$id' OR idPopularidad3 = '$id'";
 			$stmt = $dbh->prepare($sql);
