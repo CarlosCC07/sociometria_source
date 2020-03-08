@@ -307,12 +307,24 @@
 		
 		for($i = 0;$i < $total; $i++){
 			$id = $ids[$i]->idTrabajador; // Tengo el id del que fue votado
+
+			$sql="SELECT DISTINCT idTrabajador FROM encuestaPersona WHERE idAscendencia1 = '$id' OR idAscendencia2 = '$id' OR idAscendencia3 = '$id' OR idAfinidad1 = '$id' OR idAfinidad2 = '$id' OR idAfinidad3 = '$id' OR idPopularidad1 = '$id' OR idPopularidad2 = '$id' OR idPopularidad3 = '$id'";
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+			$idTot = $stmt->fetchAll(PDO::FETCH_OBJ); // ids de las personas que votaron por el
+			$totalTot = count($idTot);
+
+			$pkArr = array();
+			$pkArr[$id] = 0;
+
+			for($k = 0;$k < $totalTot;$k++){
+				$id3 = $idTot[$k]->idTrabajador;
+				$pkArr[$id3] = 0;
+			}
+
 			calculatePD($id,$dbh,1);
 			calculatePD($id,$dbh,2);
 			calculatePD($id,$dbh,3);
-			$pkArr = array();
-			$pkArr[$id] = 0;
-			
 			
 			// INDIRECTOS
 			//************************* ASCENDENCIA
@@ -329,8 +341,6 @@
 				$id2 = $idInd[$j]->idTrabajador;
 				
 				$cont = calculateInd($id2,$dbh,1,1,$pkArr);
-				$pkArr = array();
-				$pkArr[$id] = 0;
 				$sql = "UPDATE contadorPersona SET ascendenciaInd = ascendenciaInd + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
@@ -369,8 +379,6 @@
 				$cont = $value[0] -> contAfinidad1;
 				*/
 				$cont = calculateInd($id2,$dbh,2,1,$pkArr);
-				$pkArr = array();
-				$pkArr[$id] = 0;
 				$sql = "UPDATE contadorPersona SET afinidadInd = afinidadInd + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
@@ -410,8 +418,6 @@
 				$cont = $value[0] -> contPopularidad1;
 				*/
 				$cont = calculateInd($id2,$dbh,3,1,$pkArr);
-				$pkArr = array();
-				$pkArr[$id] = 0;
 				$sql = "UPDATE contadorPersona SET popularidadInd = popularidadInd + '$cont' WHERE idTrabajador = '$id'";
 				$stmt = $dbh->prepare($sql);
 				$stmt->execute();
