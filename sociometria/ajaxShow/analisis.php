@@ -58,7 +58,7 @@
 			$typeTitle= "Ascendencia Indirecta";
 	    } else {
 			$orderBy = "ascendenciaPD DESC, cp.ascendenciaDir";
-			$typeTitle= "Total PD";
+			$typeTitle= "Total Pers. Dif.";
 	    }
 	} elseif ($typeVar == 1) {
 	    if($order == 0){
@@ -69,7 +69,7 @@
 			$typeTitle= "Afinidad Indirecta";
 	    } else {
 			$orderBy = "afinidadPD DESC, cp.afinidadDir";
-			$typeTitle= "Total PD";
+			$typeTitle= "Total Pers. Dif.";
 	    }
 	} elseif ($typeVar == 2) {
 	    if($order == 0){
@@ -146,12 +146,12 @@
         echo "<th rowspan=\"2\" >Antig.</th>";
 		echo "<th rowspan=\"2\" >Nombre</th>";
 		echo "<th colspan=\"2\" >".(ucfirst($type))."</th>";
-		echo "<th rowspan=\"2\">Ind. POD</th>";
+		echo "<th rowspan=\"2\">II - Nivel C</th>";
 		echo "<th rowspan=\"2\">Ind. LID</th>";
 		echo "</tr>";
 		echo "<tr class=\"title\" style=\"background-color:rgb(65, 105, 225);color:white;\">";
 		echo "<th>Dir.</th>";
-		echo "<th>Ind.</th>";
+		echo "<th>IIX</th>";
 		echo "</tr>";
 		for($i=0;$i<$total;$i++){
 

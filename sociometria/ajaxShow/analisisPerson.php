@@ -46,9 +46,9 @@
 				        echo "<tr><td colspan=\"2\" style=\"text-align:center;border-top: none;\" ><strong><a style=\"text-align:center;color:FFFFFF;\" onclick=\"analisisPerson(".$dataPerson[0]->idTrabajador.",".$_GET["type"].")\">".utf8_encode($dataPerson[0]->puesto)."</a></strong></td></tr>";
                                         echo "<tr><td colspan=\"2\" style=\"text-align:center;border-top: none;\" ><a style=\"text-align:center;color:FFFFFF;\" onclick=\"analisisPerson(".$dataPerson[0]->idTrabajador.",".$_GET["type"].")\">".utf8_encode($dataPerson[0]->departamento)."</a></td></tr>";
 					switch ($_GET["type"]) {
-						case 0:echo "<tr><td style=\"border-top: none;border-right:none;\">ID ".$dataPerson[0]->ascendenciaDir."</td><td style=\"text-align:right;border-top: none;border-left:none;\">II ".$dataPerson[0]->ascendenciaInd."</td></tr>";break;
-						case 1:echo "<tr><td style=\"border-top: none;border-right:none;\">ID ".$dataPerson[0]->afinidadDir."</td><td style=\"text-align:right;border-top: none;border-left:none;\">II ".$dataPerson[0]->afinidadInd."</td></tr>";break;
-						case 2:echo "<tr><td style=\"border-top: none;border-right:none;\">ID ".$dataPerson[0]->popularidadDir."</td><td style=\"text-align:right;border-top: none;border-left:none;\">II ".$dataPerson[0]->popularidadInd."</td></tr>";break;
+						case 0:echo "<tr><td style=\"border-top: none;border-right:none;\">ID ".$dataPerson[0]->ascendenciaDir."</td><td style=\"text-align:right;border-top: none;border-left:none;\">IIX ".$dataPerson[0]->ascendenciaInd."</td></tr>";break;
+						case 1:echo "<tr><td style=\"border-top: none;border-right:none;\">ID ".$dataPerson[0]->afinidadDir."</td><td style=\"text-align:right;border-top: none;border-left:none;\">IIX ".$dataPerson[0]->afinidadInd."</td></tr>";break;
+						case 2:echo "<tr><td style=\"border-top: none;border-right:none;\">ID ".$dataPerson[0]->popularidadDir."</td><td style=\"text-align:right;border-top: none;border-left:none;\">IIX ".$dataPerson[0]->popularidadInd."</td></tr>";break;
 					}
 		
 					echo "</table>";
@@ -66,7 +66,7 @@
 						echo "<tr><td colspan=\"2\">--</td></tr>";
 						echo "<tr><td colspan=\"2\" style=\"text-align:center;border-top: none;color:FFFFFF;\" >".utf8_encode($name)."</td></tr>";
 								
-						echo "<tr><td style=\"border-top: none;border-right:none;\">ID --</td><td style=\"text-align:right;border-top: none;border-left:none;\">II --</td></tr>";
+						echo "<tr><td style=\"border-top: none;border-right:none;\">ID --</td><td style=\"text-align:right;border-top: none;border-left:none;\">IIX --</td></tr>";
 
 						echo "</table>";
 						
@@ -107,11 +107,11 @@
 		echo "<tr><td colspan=\"3\" style=\"text-align:center;border-top: none;\">".utf8_encode($dataPerson[0]->departamento)."</td></tr>";
 		
 		switch ($_GET["type"]) {
-			case 0:echo "<tr><td style=\"border-top: none;\">ID ".$dataPerson[0]->ascendenciaDir."</td><td style=\"border-top: none;\"></td><td style=\"text-align:right;border-top: none;\"><a style=\"color:FFFFFF;\" onclick=\"showindirect(".$id.",".$_GET["type"].",0)\">II ".$dataPerson[0]->ascendenciaInd."</a></td></tr>";break;
+			case 0:echo "<tr><td style=\"border-top: none;\">ID ".$dataPerson[0]->ascendenciaDir."</td><td style=\"border-top: none;\"></td><td style=\"text-align:right;border-top: none;\"><a style=\"color:FFFFFF;\" onclick=\"showindirect(".$id.",".$_GET["type"].",0)\">IIX ".$dataPerson[0]->ascendenciaInd."</a></td></tr>";break;
 			
-			case 1:echo "<tr><td style=\"border-top: none;\">ID ".$dataPerson[0]->afinidadDir."</td><td style=\"border-top: none;\"></td><td style=\"text-align:right;border-top: none;\"><a style=\"color:FFFFFF;\" onclick=\"showindirect(".$id.",".$_GET["type"].",0)\">II ".$dataPerson[0]->afinidadInd."</a></td></tr>";break;
+			case 1:echo "<tr><td style=\"border-top: none;\">ID ".$dataPerson[0]->afinidadDir."</td><td style=\"border-top: none;\"></td><td style=\"text-align:right;border-top: none;\"><a style=\"color:FFFFFF;\" onclick=\"showindirect(".$id.",".$_GET["type"].",0)\">IIX ".$dataPerson[0]->afinidadInd."</a></td></tr>";break;
 			
-			case 2:echo "<tr><td style=\"border-top: none;\">ID ".$dataPerson[0]->popularidadDir."</td><td style=\"border-top: none;\"></td><td style=\"text-align:right;border-top: none;\"><a style=\"color:FFFFFF;\" onclick=\"showindirect(".$id.",".$_GET["type"].",0)\">II ".$dataPerson[0]->popularidadInd."</a></td></tr>";break;
+			case 2:echo "<tr><td style=\"border-top: none;\">ID ".$dataPerson[0]->popularidadDir."</td><td style=\"border-top: none;\"></td><td style=\"text-align:right;border-top: none;\"><a style=\"color:FFFFFF;\" onclick=\"showindirect(".$id.",".$_GET["type"].",0)\">IIX ".$dataPerson[0]->popularidadInd."</a></td></tr>";break;
 			
 		}
 		
