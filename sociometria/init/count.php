@@ -26,7 +26,7 @@
 	function calculateInd($id,$dbh,$type,$level,$processedKeys){
 		$cont = 0;
 		//var_error_log($processedKeys);
-		if($level == 20){
+		if($level == 30){
 			return 0;
 		}
 

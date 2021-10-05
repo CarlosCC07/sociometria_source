@@ -89,7 +89,7 @@
 		
 		//************ Creando la información central de la persona ***************
 		
-		$sql="SELECT p.idTrabajador,p.nombre,p.departamento,p.puesto,cp.".$type."Dir,cp.".$type."Ind,cp.".$type."IndAmp as amp,p.planta FROM personas p, contadorPersona cp WHERE p.idTrabajador = cp.idTrabajador AND p.idTrabajador = ".$id."";
+		$sql="SELECT p.idTrabajador,p.nombre,p.departamento,p.puesto,cp.".$type."Dir,cp.".$type."Ind as iia,cp.".$type."Ind,cp.".$type."IndAmp as amp,p.planta FROM personas p, contadorPersona cp WHERE p.idTrabajador = cp.idTrabajador AND p.idTrabajador = ".$id."";
 		
 		$stmt = $dbh->prepare($sql);
 		$stmt->execute();
@@ -101,7 +101,7 @@
                 $nT = $dataPerson[0]->nombre;
 		
 		echo "<table class=\"table table-condensed\" style=\"background-color:#4169E1!important;color:white;\">";
-		echo "<tr><td>".$dataPerson[0]->idTrabajador."</td><td></td><td style=\"text-align:right;\"><a style=\"color:FFFFFF;\" onclick=\"showindirect(".$id.",".$_GET["type"].",1)\">IIA ".$dataPerson[0]->amp."</a></td></tr>";
+		echo "<tr><td>".$dataPerson[0]->idTrabajador."</td><td></td><td style=\"text-align:right;\"><a style=\"color:FFFFFF;\" onclick=\"showindirect(".$id.",".$_GET["type"].",1)\">IIA ".$dataPerson[0]->iia."</a></td></tr>";
 		echo "<tr><td colspan=\"3\" style=\"text-align:center;border-top: none;\" ><b>".utf8_encode($dataPerson[0]->nombre)."</b></td></tr>";
 		echo "<tr><td colspan=\"3\" style=\"text-align:center;border-top: none;\">".$dataPerson[0]->puesto."</td></tr>";
 		echo "<tr><td colspan=\"3\" style=\"text-align:center;border-top: none;\">".utf8_encode($dataPerson[0]->departamento)."</td></tr>";
