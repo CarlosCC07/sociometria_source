@@ -1,7 +1,7 @@
 <?php
 
 	$starttime = microtime(true);
-	set_time_limit(800);
+	set_time_limit(1600);
 	
     require "../bd/config.php"; //Incluyo la base de datos
 	

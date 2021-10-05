@@ -1,7 +1,7 @@
 <?php
 	require "../bd/config.php"; //Incluyo la base de datos
 	$starttime = microtime(true);
-	set_time_limit(600);
+	set_time_limit(1200);
 		
 	try {
 		$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
