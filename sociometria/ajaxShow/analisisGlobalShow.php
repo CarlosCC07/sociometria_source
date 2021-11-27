@@ -144,9 +144,9 @@
 
 			for($j=0;$j<$total_hc;$j++){
 				if($info_hc[$j]->tipoTrabajador == 0){
-					$seg_hc++;
+					//$seg_hc++;
 				} else {
-					$emp_hc++;
+					//$emp_hc++;
 				}
 			}
 			
