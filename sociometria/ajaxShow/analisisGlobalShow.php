@@ -144,9 +144,9 @@
 
 			for($j=0;$j<$total_hc;$j++){
 				if($info_hc[$j]->tipoTrabajador == 0){
-					//$seg_hc++;
+					$seg_hc++;
 				} else {
-					//$emp_hc++;
+					$emp_hc++;
 				}
 			}
 			
@@ -161,9 +161,11 @@
 
 				if($extra == 0 || $extra == $info[$i]->extra){
 					if($segment == 1) {
-						$phc = ceil((($info[$i]->total)/$emp_hc)*100);
+						$phc = ceil((($info[$i]->total)/$total_hc)*100);
+						// $phc = ceil((($info[$i]->total)/$emp_hc)*100);
 					} else if($segment == 2) {
-						$phc = ceil((($info[$i]->total)/$seg_hc)*100);
+						$phc = ceil((($info[$i]->total)/$total_hc)*100);
+						// $phc = ceil((($info[$i]->total)/$seg_hc)*100);
 					} else {
 						$phc = ceil((($info[$i]->total)/$total_hc)*100);
 					}
