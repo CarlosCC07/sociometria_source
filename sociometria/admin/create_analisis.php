@@ -197,6 +197,7 @@ function createDatabase($dbName,$year,$plants,$id,$company,$idAnalisis,$extra){
       $currentLine = fgets($bdEmployeesFile);
       $infoPerson = explode(",",$currentLine);
       $infoPerson[1] = trim(str_replace("  ", " ", $infoPerson[1]));
+      $infoPerson[0] = (int)$infoPerson[0];
       if($infoPerson[0]){
         $sql = "INSERT INTO `personas` (`idTrabajador`, `nombre`, `fechaIngreso`, `departamento`, `tipoTrabajador`, `extra`, `planta`) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
