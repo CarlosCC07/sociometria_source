@@ -44,9 +44,9 @@
 	}
 
 	switch($segment){
-	    case 0:$segmentString ="";break;//todos
-	    case 1:$segmentString ="AND p.tipoTrabajador = 1";break;
-	    case 2:$segmentString ="AND p.tipoTrabajador = 0";break;
+	    case 0:$segmentString ="AND p.tipoTrabajador = 0";break; //sindicalizados
+	    case 1:$segmentString ="AND p.tipoTrabajador = 1";break; //empleados
+	    case 2:$segmentString ="";break;//todos
 	}
 
 	if($typeVar == 0){
@@ -89,13 +89,13 @@
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		if($extra == 0){
-			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, p.bidr, cp.".$type."PD as totalPD, cp.".$type."Dir as dir, cp.".$type."Ind as ind, cp.".$type."Total as total, cp.totalDirecto FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY cp.".$orderBy." DESC ".$limit."";
+			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, p.bidr, cp.".$type."PD as totalPD, cp.".$type."Dir as dir, cp.".$type."Ind as ind, cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$extraString." ".$segmentString." ORDER BY cp.".$orderBy." DESC ".$limit."";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
 			$total = count($info);
 		} else {
-			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, p.bidr, cp.".$type."PD as totalPD, cp.".$type."Dir as dir, cp.".$type."Ind as ind, cp.".$type."Total as total, cp.totalDirecto FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$segmentString." ORDER BY cp.total, cp.".$orderBy." DESC ";
+			$sql="SELECT p.idTrabajador, p.extra, p.nombre, p.fechaIngreso, p.tipoTrabajador, p.bidr, cp.".$type."PD as totalPD, cp.".$type."Dir as dir, cp.".$type."Ind as ind, cp.".$type."Total as total FROM  contadorPersona cp INNER JOIN personas p ON p.idTrabajador = cp.idTrabajador ".$plantString." ".$segmentString." ORDER BY cp.total, cp.".$orderBy." DESC ";
 			$stmt = $dbh->prepare($sql);
 			$stmt->execute();
 			$info = $stmt->fetchAll(PDO::FETCH_OBJ); 			
@@ -118,9 +118,9 @@
 		echo "<div align=\"center\" id=\"ad\" class=\"span4\">";
 		echo "<b>Segmento</b><br><br>";
 		echo "<select id=\"seg\" name=\"".$typeVar."\" class=\"span4\" onchange=\"changeTypeOrder(this,".$plant.")\">";
-		echo "<option >Todos</option>";
-		echo "<option >Empleados</option>";
 		echo "<option >Sindicalizados</option>";
+		echo "<option >Empleados</option>";
+		echo "<option >Todos</option>";
 		echo "<select>";
 		echo "</div>";
 
@@ -146,7 +146,7 @@
         echo "<th rowspan=\"2\" >Antig.</th>";
 		echo "<th rowspan=\"2\" >Nombre</th>";
 		echo "<th colspan=\"2\" >".(ucfirst($type))."</th>";
-		echo "<th rowspan=\"2\">II - Nivel C</th>";
+		# echo "<th rowspan=\"2\">II - Nivel C</th>";
 		echo "<th rowspan=\"2\">Ind. LID</th>";
 		echo "</tr>";
 		echo "<tr class=\"title\" style=\"background-color:rgb(65, 105, 225);color:white;\">";
@@ -198,7 +198,7 @@
 
 				echo"<td style=\"text-align:center;\">".$info[$i]->dir."</td>";
 				echo "<td style=\"text-align:center;\">".$info[$i]->ind."</td>";
-				echo "<td style=\"text-align:center;\">".$info[$i]->totalDirecto."</td>";
+				# echo "<td style=\"text-align:center;\">".$info[$i]->total."</td>";
 				echo "<td style=\"text-align:center;\">".$info[$i]->totalPD."</td>";
 				echo "</tr>";
 
